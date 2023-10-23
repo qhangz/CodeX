@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 const state = reactive({
-    isLogin: false,
+    isLogin: true,
     emailError: false,
     passwordError: false,
     existed: false,

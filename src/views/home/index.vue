@@ -1,11 +1,13 @@
 <script setup lang="ts">
-
+import {ref} from 'vue'
+const value=ref(new Date())
 </script>
 
 <template>
     <div class="home">
         this is home page
         <router-link to="/about">About</router-link>
+        <el-calendar v-model="value" />
     </div>
 </template>
 
