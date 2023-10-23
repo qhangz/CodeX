@@ -7,5 +7,6 @@ id_user                 int
 username                char
 password                char
 age                     int
+email                   char
 personalized_signature  char
 ```
