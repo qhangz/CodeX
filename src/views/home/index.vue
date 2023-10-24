@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import {ref} from 'vue'
-const value=ref(new Date())
+
 </script>
 
 <template>
     <div class="home">
         this is home page
         <router-link to="/about">About</router-link>
-        <el-calendar v-model="value" />
+        <el-button type="primary">button</el-button>
     </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .home {
     width: 100%;
     display: flex;

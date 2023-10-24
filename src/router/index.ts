@@ -1,34 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/home/index.vue'
+import Layout from '@/views/layout/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // 默认路由页面
     {
       path: '/',
-      name: 'null',
-      component: HomeView
+      name: 'layout',
+      component: Layout,
+      children: [
+        {
+          // home page
+          path: '',
+          name: 'home',
+          component: () => import('../views/home/index.vue')
+        }
+      ]
     },
-    // home page
-    {
-      path: '/home',
-      name: 'home',
-      component: () => import('../views/home/index.vue')
-    },
+
     // login and register page
     {
       path: '/login',
       name: 'login',
       component: () => import('../views/login/index.vue')
     },
-    
-    // test page
-    // {
-    //   path: '/test',
-    //   name: 'test',
-    //   component: () => import('../views/login/sf.vue')
-    // },
+
 
     // about page
     {

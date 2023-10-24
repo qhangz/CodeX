@@ -74,7 +74,7 @@ const changeType = () => {
     </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .login {
     width: 90vw;
     height: 88vh;

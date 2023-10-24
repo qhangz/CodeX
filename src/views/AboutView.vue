@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 // 页面居中显示
 .about {
   width: 100%;
