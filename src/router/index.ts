@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Layout from '@/views/layout/index.vue'
+import Layout from '@/views/Layout/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,7 +13,25 @@ const router = createRouter({
           // home page，path: ' ' is the default child path
           path: '',
           name: 'home',
-          component: () => import('../views/home/index.vue')
+          component: () => import('../views/Home/index.vue')
+        },
+        {
+          // events page
+          path: '/events',
+          name: 'events',
+          component: () => import('../views/Events/index.vue')
+        },
+        {
+          // chanllenge page
+          path: '/chanllenge',
+          name: 'chanllenge',
+          component: () => import('../views/Chanllenge/index.vue')
+        },
+        {
+          // course page
+          path: '/course',
+          name: 'course',
+          component: () => import('../views/Course/index.vue')
         }
       ]
     },
@@ -22,7 +40,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/login/index.vue')
+      component: () => import('../views/Login/index.vue')
     },
 
 

@@ -3,15 +3,14 @@
 </script>
 
 <template>
-    <div class="home">
-        this is home page
-        <router-link to="/about">About</router-link>
-        <el-button type="primary">button</el-button>
+    <div class="events">
+        this is evnets page
+
     </div>
 </template>
 
 <style lang="scss" scoped>
-.home {
+.events {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -20,7 +19,7 @@
 }
 
 @media (min-width: 1024px) {
-    .home {
+    .events {
         display: flex;
         justify-content: center;
         align-items: center;
