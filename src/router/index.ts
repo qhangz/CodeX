@@ -10,7 +10,7 @@ const router = createRouter({
       component: Layout,
       children: [
         {
-          // home page
+          // home page，path: ' ' is the default child path
           path: '',
           name: 'home',
           component: () => import('../views/home/index.vue')
