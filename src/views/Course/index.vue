@@ -1,11 +1,9 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
     <div class="course">
         this is course page
-
     </div>
 </template>
 
