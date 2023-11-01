@@ -9,12 +9,16 @@ import LayoutFooter from './components/LayoutFooter.vue'
     <div class="layout">
         <!-- <Header></Header> -->
         <!-- <LayoutNav /> -->
-        <LayoutHeader />
+        <header>
+            <LayoutHeader />
+        </header>
         <RouterView />
         <LayoutFooter />
     </div>
 </template>
 
 <style lang="scss" scoped>
-
+header {
+    margin-bottom: 64px;
+}
 </style>

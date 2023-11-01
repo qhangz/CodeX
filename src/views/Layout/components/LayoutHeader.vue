@@ -2,6 +2,9 @@
 import { onMounted, ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'    // 引入搜索图标
 
+import { useScroll } from '@vueuse/core'
+const { y } = useScroll(window)
+
 // 自动补全输入框
 interface RestaurantItem {
     value: string
@@ -46,12 +49,13 @@ onMounted(() => {
 })
 </script>
 <template>
-    <header class='app-header'>
+    <div class='app-header' :class="{ hidden: y > 200 }">
         <div class="container">
+            <!-- logo -->
             <h1 class="logo">
                 <RouterLink to="/">CodeX</RouterLink>
             </h1>
-
+            <!-- header nav -->
             <ul class="app-header-nav">
                 <li class="home">
                     <RouterLink to="/">首页</RouterLink>
@@ -65,8 +69,17 @@ onMounted(() => {
                 <li>
                     <RouterLink to="/course">课程</RouterLink>
                 </li>
+                <li>
+                    <RouterLink to="/">商城</RouterLink>
+                </li>
+                <li>
+                    <RouterLink to="/">APP</RouterLink>
+                </li>
+                <li>
+                    <RouterLink to="/">游戏</RouterLink>
+                </li>
             </ul>
-
+            <!-- searcbox -->
             <div class="search">
                 <el-col :span="200">
                     <el-autocomplete v-model="state1" :fetch-suggestions="querySearch" clearable class="inline-input w-50"
@@ -74,7 +87,7 @@ onMounted(() => {
                     <el-button style="margin-left: 5px;" :icon="Search" circle />
                 </el-col>
             </div>
-
+            <!-- creaor center -->
             <div class="creatorCenter">
                 <div class="btn">
                     <RouterLink to="/">创作中心</RouterLink>
@@ -121,13 +134,22 @@ onMounted(() => {
                 </div>
             </div>
         </div>
-    </header>
+    </div>
 </template>
 <style lang="scss" scoped>
 .app-header {
     background-color: #fff;
-    // height:60px;
+    height: 64px;
+    width: 100%;
     padding: 7px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: top 0.2s ease-in-out;
+
+    &.hidden {
+        top: -64px;
+    }
 
     .container {
         display: flex;
@@ -148,8 +170,7 @@ onMounted(() => {
         }
 
         .app-header-nav {
-            // width: 820px;
-            width: 600px;
+            width: 560px;
             display: flex;
             padding-left: 20px;
             position: relative;
