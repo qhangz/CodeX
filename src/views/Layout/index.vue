@@ -19,6 +19,7 @@ import LayoutFooter from './components/LayoutFooter.vue'
 
 <style lang="scss" scoped>
 header {
-    margin-bottom: 64px;
+    width: 100%;
+    height: 64px;
 }
 </style>

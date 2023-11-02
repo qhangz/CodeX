@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h1>This is an about page </h1>
-    <RouterLink to="/">Home</RouterLink>
+    <h3>关于用户协议和隐私政策</h3>
   </div>
 </template>
 

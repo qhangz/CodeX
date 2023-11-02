@@ -5,6 +5,9 @@ import { Search } from '@element-plus/icons-vue'    // 引入搜索图标
 import { useScroll } from '@vueuse/core'
 const { y } = useScroll(window)
 
+// user info interface
+const isLogin = ref(true)
+
 // 自动补全输入框
 interface RestaurantItem {
     value: string
@@ -39,11 +42,9 @@ const loadAll = () => {
         { value: 'babel', link: 'https://github.com/babel/babel' },
     ]
 }
-
 const handleSelect = (item: RestaurantItem) => {
     console.log(item)
 }
-
 onMounted(() => {
     restaurants.value = loadAll()
 })
@@ -88,14 +89,15 @@ onMounted(() => {
                 </el-col>
             </div>
             <!-- creaor center -->
-            <div class="creatorCenter">
+            <div class="creator-center">
                 <div class="btn">
                     <RouterLink to="/">创作中心</RouterLink>
                 </div>
                 <div class="dropdown-content">
                     <ul class="drop-item">
                         <li>
-                            <RouterLink to="/"> <svg class="icon" aria-hidden="true">
+                            <RouterLink to="/">
+                                <svg class="icon" aria-hidden="true">
                                     <use xlink:href="#icon-yuedu"></use>
                                 </svg>
                                 <div class="text">
@@ -133,6 +135,29 @@ onMounted(() => {
                     </ul>
                 </div>
             </div>
+            <!-- user info -->
+            <div class="user" v-if="isLogin">
+                <div class="is-login">
+                    <div class="notice">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-xiaoxi"></use>
+                        </svg>
+                        <div class="dropdown">
+                            <ul class="drop-item">
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="avatar">
+                        <div class="icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="user" v-else>
+                <div class="not-login">
+                    <RouterLink to="/login"><span>登录&nbsp;</span>&nbsp;&nbsp;注册</RouterLink>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -154,6 +179,7 @@ onMounted(() => {
     .container {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 20px;
 
         .logo {
@@ -204,7 +230,7 @@ onMounted(() => {
             display: flex;
         }
 
-        .creatorCenter {
+        .creator-center {
             height: 100%;
             width: 100px;
             position: relative;
@@ -223,7 +249,6 @@ onMounted(() => {
             .btn a {
                 color: #fff;
                 // font-size: 16px;
-                text-decoration: none;
             }
 
             .dropdown-content {
@@ -275,8 +300,79 @@ onMounted(() => {
             }
         }
 
-        .creatorCenter:hover .dropdown-content {
+        .creator-center:hover .dropdown-content {
             display: block;
+        }
+
+        .user {
+            .is-login {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 32px;
+                // width: 100px;
+                gap: 20px;
+
+                .notice {
+                    width: 32px;
+                    height: 32px;
+
+                    .icon {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                .notice:hover {
+                    cursor: pointer;
+                }
+
+                .avatar {
+                    width: 40px;
+                    height: 40px;
+                    cursor: pointer;
+                    transition: transform 0.5s ease-in-out;
+
+                    .icon {
+                        width: 100%;
+                        height: 100%;
+                        background: url('@/assets/images/myavatar.jpg') no-repeat center 0px / contain;
+                        border-radius: 50%;
+                    }
+                }
+
+                .avatar:hover {
+
+                    transform: rotate(360deg);
+                }
+            }
+
+            .not-login {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 32px;
+                width: 100px;
+                background-color: $primary-500;
+                border-radius: 4px;
+                border: 1px solid $primary-300;
+
+                a {
+                    color: $primary-100;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    span {
+                        border-right: 1px solid $primary-300;
+                    }
+                }
+            }
+
+            .not-login:hover {
+                background-color: $primary-400;
+            }
         }
     }
 }

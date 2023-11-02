@@ -40,9 +40,10 @@ const changeType = () => {
                     <div class="btitle">账户登录</div>
                     <div class="bform">
                         <input type="text" placeholder="用户名" v-model="form.username">
-                        <!-- <span class="errTips" v-if="state.emailError">* 邮箱填写错误 *</span> -->
+                        <span class="errTips" v-if="state.emailError">* 邮箱填写错误 *</span>
                         <input type="password" placeholder="密码" v-model="form.userpwd">
                         <span class="errTips" v-if="state.passwordError">* 密码填写错误 *</span>
+                        <div class="otherWay">其他登录： Github</div>
                     </div>
                     <button class="bbutton" @click="login">登录</button>
                 </div>
@@ -51,22 +52,28 @@ const changeType = () => {
                     <div class="bform">
                         <input type="text" placeholder="用户名" v-model="form.username">
                         <span class="errTips" v-if="state.existed">* 用户名已经存在！ *</span>
-                        <input type="email" placeholder="邮箱" v-model="form.useremail">
+                        <input type="text" placeholder="邮箱" v-model="form.useremail">
                         <input type="password" placeholder="密码" v-model="form.userpwd">
                     </div>
                     <button class="bbutton" @click="register">注册</button>
+                </div>
+                <div class="instruction" v-if="state.isLogin">
+                    <span>注册登录即表示同意</span>
+                    <RouterLink to="/about">&nbsp;用户协议&nbsp;</RouterLink>
+                    <span>和</span>
+                    <RouterLink to="/about">&nbsp;隐私政策&nbsp;</RouterLink>
                 </div>
             </div>
 
             <div class="small-box" :class="{ active: state.isLogin }">
                 <div class="small-contain" key="smallContainRegister" v-if="state.isLogin">
-                    <div class="stitle">你好，朋友!</div>
-                    <p class="scontent">开始注册，和我们一起旅行</p>
+                    <div class="stitle">Hello World!</div>
+                    <p class="scontent">和我们一起旅行</p>
                     <button class="sbutton" @click="changeType">注册</button>
                 </div>
                 <div class="small-contain" key="smallContainLogin" v-else>
-                    <div class="stitle">欢迎回来!</div>
-                    <p class="scontent">去登入账号来进入奇妙世界吧！！！</p>
+                    <div class="stitle">Welcome!</div>
+                    <p class="scontent">进入奇妙世界吧</p>
                     <button class="sbutton" @click="changeType">登录</button>
                 </div>
             </div>
@@ -76,14 +83,15 @@ const changeType = () => {
 
 <style lang="scss" scoped>
 .login {
-    width: 90vw;
-    height: 88vh;
+    width: 100vw;
+    height: 100vh;
     padding: 2rem;
     box-sizing: border-box;
+    justify-content: center;
 
     .contain {
-        width: 60%;
-        height: 60%;
+        width: 600px;
+        height: 400px;
         position: relative;
         top: 50%;
         left: 50%;
@@ -113,13 +121,13 @@ const changeType = () => {
                 .btitle {
                     font-size: 1.5em;
                     font-weight: bold;
-                    color: rgb(57, 167, 176);
+                    color: $primary-200;
                 }
 
                 .bform {
                     width: 100%;
-                    height: 40%;
-                    padding: 2em 0;
+                    height: 50%;
+                    padding: 1.5em 0;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-around;
@@ -130,6 +138,14 @@ const changeType = () => {
                         width: 50%;
                         text-align: left;
                         color: red;
+                        font-size: 0.7em;
+                        margin-left: 1em;
+                    }
+
+                    .otherWay {
+                        width: 50%;
+                        text-align: left;
+                        color: #999;
                         font-size: 0.7em;
                         margin-left: 1em;
                     }
@@ -152,13 +168,26 @@ const changeType = () => {
                     border-radius: 24px;
                     border: none;
                     outline: none;
-                    background-color: rgb(57, 167, 176);
+                    background-color: $primary-200;
                     color: #fff;
                     font-size: 0.9em;
                     cursor: pointer;
                     box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f9f9f9;
                 }
 
+            }
+
+            .instruction {
+                font-size: 0.7em;
+                color: #999;
+                text-align: center;
+                position: relative;
+                left: 50%;
+                transform: translate(-50%, -180%);
+
+                a {
+                    color: $primary-200;
+                }
             }
         }
 
@@ -170,7 +199,7 @@ const changeType = () => {
         .small-box {
             width: 30%;
             height: 100%;
-            background: linear-gradient(135deg, rgb(57, 167, 176), rgb(56, 183, 145));
+            background: linear-gradient(135deg, $primary-300, $primary-100);
             position: absolute;
             top: 0;
             left: 0;
