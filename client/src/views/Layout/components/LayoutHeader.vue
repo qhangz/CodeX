@@ -144,7 +144,7 @@ onMounted(() => {
                         </svg>
                         <div class="dropdown">
                             <ul class="drop-item">
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -163,7 +163,7 @@ onMounted(() => {
 </template>
 <style lang="scss" scoped>
 .app-header {
-    background-color: #fff;
+    background-color: var(--bg1);
     height: 64px;
     width: 100%;
     padding: 7px 0;
@@ -181,6 +181,7 @@ onMounted(() => {
         align-items: center;
         justify-content: center;
         gap: 20px;
+        width: 100%;
 
         .logo {
             width: 50px;
@@ -247,14 +248,14 @@ onMounted(() => {
             }
 
             .btn a {
-                color: #fff;
+                color: var(--text-color2);
                 // font-size: 16px;
             }
 
             .dropdown-content {
                 display: none;
                 position: absolute;
-                background-color: #f9f9f9;
+                background-color: var(--bg3);
                 min-width: 160px;
                 box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
                 z-index: 1;
@@ -353,9 +354,9 @@ onMounted(() => {
                 align-items: center;
                 height: 32px;
                 width: 100px;
-                background-color: $primary-500;
+                background-color: var(--primary-500);
                 border-radius: 4px;
-                border: 1px solid $primary-300;
+                border: 1px solid var(--primary-300);
 
                 a {
                     color: $primary-100;
@@ -365,13 +366,13 @@ onMounted(() => {
                     align-items: center;
 
                     span {
-                        border-right: 1px solid $primary-300;
+                        border-right: 1px solid var(--primary-300);
                     }
                 }
             }
 
             .not-login:hover {
-                background-color: $primary-400;
+                background-color: var(--primary-400);
             }
         }
     }
