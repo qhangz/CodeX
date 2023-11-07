@@ -1,21 +1,13 @@
 <script setup lang="ts">
-
+import HomeNav from './components/HomeNav.vue'
+import HomeAside from './components/HomeAside.vue'
 </script>
 
 <template>
     <div class="home">
-        
-        this is home page
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <HomeNav />
+        <router-view />
+        <HomeAside/>
     </div>
 </template>
 
@@ -25,21 +17,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    div{
-        width: 100px;
-        height: 100px;
-        background-color: red;
-        margin: 10px;
-    }
+    flex-direction:row;
+    padding-top:20px;
+    gap:20px;
 }
 
-@media (min-width: 1024px) {
-    .home {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
+.home-nav {
+
 }
+
+
+// @media (min-width: 1024px) {
+//     .home {
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         flex-direction: column;
+//     }
+// }
 </style>
