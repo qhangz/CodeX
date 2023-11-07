@@ -71,13 +71,10 @@ onMounted(() => {
                     <RouterLink to="/course">课程</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/">商城</RouterLink>
+                    <RouterLink to="/games">游戏</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/">APP</RouterLink>
-                </li>
-                <li>
-                    <RouterLink to="/">游戏</RouterLink>
+                    <RouterLink to="/about" target="_blank">关于</RouterLink>
                 </li>
             </ul>
             <!-- searcbox -->

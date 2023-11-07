@@ -13,7 +13,24 @@ const router = createRouter({
           // home page，path: ' ' is the default child path
           path: '',
           name: 'home',
-          component: () => import('../views/Home/index.vue')
+          component: () => import('../views/Home/index.vue'),
+          children:[
+            {
+              path: '/following',
+              name: 'following',
+              component: () => import('../views/Home/Following.vue')
+            },
+            {
+              path: '/frontend',
+              name: 'frontend',
+              component: () => import('../views/Home/Frontend.vue')
+            },
+            {
+              path: '/backend',
+              name: 'backend',
+              component: () => import('../views/Home/Backend.vue')
+            }
+          ]
         },
         {
           // events page
@@ -32,6 +49,12 @@ const router = createRouter({
           path: '/course',
           name: 'course',
           component: () => import('../views/Course/index.vue')
+        },
+        {
+          // games page
+          path: '/games',
+          name: 'games',
+          component: () => import('../views/Games/index.vue')
         }
       ]
     },
@@ -43,7 +66,6 @@ const router = createRouter({
       component: () => import('../views/Login/index.vue')
     },
 
-
     // about page
     {
       path: '/about',
@@ -51,7 +73,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/About/AboutView.vue')
     }
   ]
 })
