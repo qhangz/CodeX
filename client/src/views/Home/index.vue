@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import HomeNav from './components/HomeNav.vue'
+import ArticleList from './components/ArticleList.vue'
 import HomeAside from './components/HomeAside.vue'
 </script>
 
 <template>
     <div class="home">
         <HomeNav />
-        <router-view />
-        <HomeAside/>
+        <ArticleList />
+        <HomeAside />
     </div>
 </template>
 
@@ -17,14 +18,12 @@ import HomeAside from './components/HomeAside.vue'
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction:row;
-    padding-top:20px;
-    gap:20px;
+    flex-direction: row;
+    padding-top: 20px;
+    gap: 20px;
 }
 
-.home-nav {
-
-}
+.home-nav {}
 
 
 // @media (min-width: 1024px) {

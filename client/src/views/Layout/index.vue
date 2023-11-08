@@ -20,6 +20,6 @@ import LayoutFooter from './components/LayoutFooter.vue'
 <style lang="scss" scoped>
 header {
     width: 100%;
-    height: 64px;
+    height: 60px;
 }
 </style>

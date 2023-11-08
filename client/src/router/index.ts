@@ -11,26 +11,9 @@ const router = createRouter({
       children: [
         {
           // home page，path: ' ' is the default child path
-          path: '',
+          path: '/',
           name: 'home',
           component: () => import('../views/Home/index.vue'),
-          children:[
-            {
-              path: '/following',
-              name: 'following',
-              component: () => import('../views/Home/Following.vue')
-            },
-            {
-              path: '/frontend',
-              name: 'frontend',
-              component: () => import('../views/Home/Frontend.vue')
-            },
-            {
-              path: '/backend',
-              name: 'backend',
-              component: () => import('../views/Home/Backend.vue')
-            }
-          ]
         },
         {
           // events page

@@ -1,5 +1,4 @@
 # my-community
-https://juejin.cn/post/7261741840830857275?searchId=20231018193506B8ACD975F036C6CB1A02
 
 This template should help get you started developing with Vue 3 in Vite.
 

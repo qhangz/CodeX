@@ -1,6 +1,6 @@
 <template>
-    <footer class="app_footer">
-        <!-- 联系我们 -->
+    <footer class="app-footer">
+
         <div class="contact">
             <div class="container">
                 <dl>
@@ -50,14 +50,15 @@
 </template>
 
 <style scoped lang='scss'>
-.app_footer {
+.app-footer {
     overflow: hidden;
     background-color: #f5f5f5;
     padding-top: 20px;
 
     .contact {
         background: #fff;
-
+        display:flex;
+        justify-content: center;
         .container {
             padding: 15px 0 0px 25px;
             display: flex;

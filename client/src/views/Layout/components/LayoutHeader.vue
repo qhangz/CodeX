@@ -59,22 +59,22 @@ onMounted(() => {
             <!-- header nav -->
             <ul class="app-header-nav">
                 <li class="home">
-                    <RouterLink to="/">首页</RouterLink>
+                    <RouterLink to="/" active-class="header-nav-home">首页</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/events">活动</RouterLink>
+                    <RouterLink to="/events" active-class="header-nav">活动</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/chanllenge">竞赛</RouterLink>
+                    <RouterLink to="/chanllenge" active-class="header-nav">竞赛</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/course">课程</RouterLink>
+                    <RouterLink to="/course" active-class="header-nav">课程</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/games">游戏</RouterLink>
+                    <RouterLink to="/games" active-class="header-nav">游戏</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/about" target="_blank">关于</RouterLink>
+                    <RouterLink to="/about" target="_blank" active-class="header-nav">关于</RouterLink>
                 </li>
             </ul>
             <!-- searcbox -->
@@ -161,9 +161,9 @@ onMounted(() => {
 <style lang="scss" scoped>
 .app-header {
     background-color: var(--bg1);
-    height: 64px;
+    height: 60px;
     width: 100%;
-    padding: 7px 0;
+    padding: 5px 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -199,6 +199,12 @@ onMounted(() => {
             padding-left: 20px;
             position: relative;
             z-index: 998;
+            .header-nav-home{
+                color:var(--primary-100);
+            }
+            .header-nav {
+                color: var(--primary-100);
+            }
 
             li {
                 margin-right: 30px;
@@ -210,17 +216,14 @@ onMounted(() => {
                     line-height: 32px;
                     height: 32px;
                     display: inline-block;
+                    color: var(--text-color3);
 
                     &:hover {
-                        color: $xtxColor;
-                        border-bottom: 1px solid $xtxColor;
+                        color: var(--primary-100);
+                        border-bottom: 1px solid var(--primary-100);
                     }
                 }
 
-                .active {
-                    color: $xtxColor;
-                    border-bottom: 1px solid $xtxColor;
-                }
             }
         }
 
