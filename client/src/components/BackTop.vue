@@ -1,20 +1,16 @@
-<!-- <script setup lang="ts">
-
-</script>
-<template>
-    <div class="backtop">
-        <a href="javascript:;" class="backtop backtop-hidden">
-            <i class="iconfont icon-up"></i>
-        </a>
-    </div>
-</template>
-<style scoped lang="scss"></style> -->
-<!-- backtop 的组件 -->
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useScroll } from '@vueuse/core'
 const { y } = useScroll(window)
 const scrollY = ref(200)
+// 自定义样式
+const customStyle = ref({
+    width: '50px',
+    height: '50px',
+    bottom: '50px',
+    right: '50px',
+    backgroundColor: 'var(--primary-200)',
+})
 
 const handleClick = () => {
     window.scrollTo({
@@ -24,24 +20,29 @@ const handleClick = () => {
     })
 }
 
-
 </script>
 <template>
-    <div class="backtop"  :class="{ hidden: y < scrollY }" @click="handleClick">
+    <div class="backtop" :class="{ hidden: y < scrollY }" @click="handleClick" :style="{
+        '--width': customStyle.width,
+        '--height': customStyle.height,
+        '--bottom': customStyle.bottom,
+        '--right': customStyle.right,
+        'background-color': customStyle.backgroundColor
+    }">
         A
     </div>
 </template>
 <style scoped lang="scss">
 .backtop {
     position: fixed;
-    right: 50px;
-    bottom: 50px;
+    right: var(--right);
+    bottom: var(--bottom);
     z-index: 999;
-    width: 50px;    
-    height: 50px;
+    width: var(--width);
+    height: var(--height);
     border-radius: 50%;
-    background-color: var(--primary-200);
-    color:#fff;
+    background-color: var(--background-color);
+    color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
