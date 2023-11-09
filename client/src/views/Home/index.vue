@@ -2,6 +2,7 @@
 import HomeNav from './components/HomeNav.vue'
 import ArticleList from './components/ArticleList.vue'
 import HomeAside from './components/HomeAside.vue'
+import BackTop from '@/components/BackTop.vue'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import HomeAside from './components/HomeAside.vue'
         <HomeNav />
         <ArticleList />
         <HomeAside />
+        <BackTop />
     </div>
 </template>
 
@@ -23,7 +25,10 @@ import HomeAside from './components/HomeAside.vue'
     gap: 20px;
 }
 
-.home-nav {}
+.home-nav {
+    height:1000px;
+    
+}
 
 
 // @media (min-width: 1024px) {
