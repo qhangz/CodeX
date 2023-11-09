@@ -59,22 +59,22 @@ onMounted(() => {
             <!-- header nav -->
             <ul class="app-header-nav">
                 <li class="home">
-                    <RouterLink to="/" active-class="header-nav-home">首页</RouterLink>
+                    <RouterLink to="/" :class="{ 'active': $route.path === '/' }">首页</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/events" active-class="header-nav">活动</RouterLink>
+                    <RouterLink to="/events" :class="{ 'active': $route.path === '/events' }">活动</RouterLink>
+                </li>
+                <li >
+                    <RouterLink to="/chanllenge" :class="{ 'active': $route.path === '/chanllenge' }">竞赛</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/chanllenge" active-class="header-nav">竞赛</RouterLink>
+                    <RouterLink to="/course" :class="{ 'active': $route.path === '/course' }">课程</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/course" active-class="header-nav">课程</RouterLink>
+                    <RouterLink to="/games" :class="{ 'active': $route.path === '/games' }">游戏</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/games" active-class="header-nav">游戏</RouterLink>
-                </li>
-                <li>
-                    <RouterLink to="/about" target="_blank" active-class="header-nav">关于</RouterLink>
+                    <RouterLink to="/about" target="_blank" :class="{ 'active': $route.path === '/about' }">关于</RouterLink>
                 </li>
             </ul>
             <!-- searcbox -->
@@ -199,12 +199,6 @@ onMounted(() => {
             padding-left: 20px;
             position: relative;
             z-index: 998;
-            .header-nav-home{
-                color:var(--primary-100);
-            }
-            .header-nav {
-                color: var(--primary-100);
-            }
 
             li {
                 margin-right: 30px;
@@ -224,6 +218,9 @@ onMounted(() => {
                     }
                 }
 
+                .active {
+                    color: var(--primary-100);
+                }
             }
         }
 
