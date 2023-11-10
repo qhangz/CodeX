@@ -64,7 +64,7 @@ onMounted(() => {
                 <li>
                     <RouterLink to="/events" :class="{ 'active': $route.path === '/events' }">活动</RouterLink>
                 </li>
-                <li >
+                <li>
                     <RouterLink to="/chanllenge" :class="{ 'active': $route.path === '/chanllenge' }">竞赛</RouterLink>
                 </li>
                 <li>
@@ -77,6 +77,31 @@ onMounted(() => {
                     <RouterLink to="/about" target="_blank" :class="{ 'active': $route.path === '/about' }">关于</RouterLink>
                 </li>
             </ul>
+            <!-- header nav dropdown -->
+            <div class="app-header-nav-dropdown">
+                <div>下拉菜单</div>
+                <ul class="dropdown-content">
+                    <li>
+                        <RouterLink to="/" :class="{ 'active': $route.path === '/' }">首页</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/events" :class="{ 'active': $route.path === '/events' }">活动</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/chanllenge" :class="{ 'active': $route.path === '/chanllenge' }">竞赛</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/course" :class="{ 'active': $route.path === '/course' }">课程</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/games" :class="{ 'active': $route.path === '/games' }">游戏</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/about" target="_blank" :class="{ 'active': $route.path === '/about' }">关于
+                        </RouterLink>
+                    </li>
+                </ul>
+            </div>
             <!-- searcbox -->
             <div class="search">
                 <el-col :span="200">
@@ -224,6 +249,49 @@ onMounted(() => {
             }
         }
 
+        .app-header-nav-dropdown {
+            position: relative;
+            display: flex;
+            font-size: 16px;
+            line-height: 32px;
+            height: 32px;
+            width: 80px;
+            justify-content: center;
+            margin-right: 150px;
+            margin-left: 50px;
+            background-color: var(--primary-100);
+            color: var(--text-color2);
+            border-radius: 4px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: var(--bg3);
+                // min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                margin-top: 32px;
+
+                li {
+                    list-style: none;
+                    padding: 10px;
+                    display: flex;
+                    justify-content: center;
+                    width: 100px;
+                }
+
+                li:hover {
+                    background-color: var(--bg4);
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .app-header-nav-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
         .search {
             display: flex;
         }
@@ -239,7 +307,7 @@ onMounted(() => {
                 justify-content: center;
                 align-items: center;
                 height: 32px;
-                background-color: $xtxColor;
+                background-color: var(--primary-100);
                 border-radius: 4px;
                 // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
             }
@@ -372,6 +440,48 @@ onMounted(() => {
                 background-color: var(--primary-400);
             }
         }
+    }
+}
+
+@media(max-width:1140px) {
+    .search {
+        display: none !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .creator-center {
+        display: none !important;
+    }
+}
+
+@media (max-width: 750px) {
+    .app-header-nav {
+        display: none !important;
+    }
+}
+
+@media (min-width: 750px) {
+    .app-header-nav-dropdown {
+        display: none !important;
+    }
+}
+
+@media (max-width: 510px) {
+    .app-header-nav-dropdown {
+        margin-left: 0 !important;
+    }
+}
+
+@media (max-width: 430px) {
+    .app-header-nav-dropdown {
+        margin-right: 50px !important;
+    }
+}
+
+@media (max-width: 330px) {
+    .app-header-nav-dropdown {
+        margin-right: 0px !important;
     }
 }
 </style>

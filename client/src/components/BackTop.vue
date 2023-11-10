@@ -5,11 +5,13 @@ const { y } = useScroll(window)
 const scrollY = ref(200)
 // 自定义样式
 const customStyle = ref({
-    width: '50px',
-    height: '50px',
-    bottom: '50px',
-    right: '50px',
+    width: '40px',
+    height: '40px',
+    bottom: '150px',
+    right: '30px',
     backgroundColor: 'var(--primary-200)',
+    iconWidth: '25px',
+    iconHeight: '25px'
 })
 
 const handleClick = () => {
@@ -27,9 +29,14 @@ const handleClick = () => {
         '--height': customStyle.height,
         '--bottom': customStyle.bottom,
         '--right': customStyle.right,
-        'background-color': customStyle.backgroundColor
+        '--background-color': customStyle.backgroundColor
     }">
-        A
+        <svg class="icon" aria-hidden="true" :style="{
+            '--icon-width': customStyle.iconWidth,
+            '--icon-height': customStyle.iconHeight
+        }">
+            <use xlink:href="#icon-fanhuidingbu"></use>
+        </svg>
     </div>
 </template>
 <style scoped lang="scss">
@@ -49,6 +56,12 @@ const handleClick = () => {
     align-items: center;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.35));
+
+    .icon {
+        width: var(--icon-width);
+        height: var(--icon-height);
+    }
 
     &.hidden {
         opacity: 0;

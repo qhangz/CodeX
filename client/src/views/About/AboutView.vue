@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useAdd } from '@/hooks/useAdd';
 const a = useAdd()
 import FlodNav from '@/components/FlodNav.vue'
-
+// import Test from './test.vue'
 </script>
 
 <template>
@@ -12,6 +12,7 @@ import FlodNav from '@/components/FlodNav.vue'
     <h3>关于用户协议和隐私政策</h3>
     <div>{{ a }}</div>
     <FlodNav />
+    <!-- <Test /> -->
   </div>
 </template>
 
