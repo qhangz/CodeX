@@ -26,7 +26,7 @@ import BackTop from '@/components/BackTop.vue'
 }
 
 .home-nav {
-    height:1000px;
+    // height:1000px;
     
 }
 

@@ -13,4 +13,10 @@
     height: 100%;
     background-color: aquamarine;
 }
+@media(max-width:1005px){
+    .home-aside{
+        display: none;
+    }
+}
+
 </style>

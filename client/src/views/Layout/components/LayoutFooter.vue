@@ -3,17 +3,17 @@
 
         <div class="contact">
             <div class="container">
-                <dl>
+                <dl class="box1">
                     <dt>客户服务</dt>
                     <dd><i class="iconfont icon-kefu"></i> 在线客服</dd>
                     <dd><i class="iconfont icon-question"></i> 问题反馈</dd>
                 </dl>
-                <dl>
+                <dl class="box2">
                     <dt>关注我们</dt>
                     <dd><i class="iconfont icon-weixin"></i> 公众号</dd>
                     <dd><i class="iconfont icon-weibo"></i> 微博</dd>
                 </dl>
-                <dl>
+                <dl class="box3">
                     <dt>下载APP</dt>
                     <dd class="qrcode"><img src="@/assets/images/qrcode.jpg" /></dd>
                     <dd class="download">
@@ -22,7 +22,7 @@
                         <a href="javascript:;">下载页面</a>
                     </dd>
                 </dl>
-                <dl>
+                <dl class="box4">
                     <dt>服务热线</dt>
                     <dd class="hotline">100-8610-086 <small>周一至周日 9:00-21:00</small></dd>
                 </dl>
@@ -57,8 +57,9 @@
 
     .contact {
         background: #fff;
-        display:flex;
+        display: flex;
         justify-content: center;
+
         .container {
             padding: 15px 0 0px 25px;
             display: flex;
@@ -182,6 +183,45 @@
                 border-right: none;
             }
         }
+    }
+}
+
+@media(max-width: 1250px) {
+    .box3 {
+        display: none;
+    }
+}
+
+@media(max-width: 911px) {
+    .box4 {
+        display: none;
+    }
+}
+
+@media(max-width: 650px) {
+    .box1 {
+        display: none;
+    }
+    dl{
+        padding: 0 0px !important;
+    }
+}
+
+@media(max-width:580px) {
+    a {
+        font-size: small;
+    }
+
+}
+
+@media(max-width: 520px) {
+    a {
+        font-size: 10px;
+    }
+}
+@media(max-width: 430px) {
+    a {
+        font-size: 8px;
     }
 }
 </style>
