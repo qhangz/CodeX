@@ -17,4 +17,10 @@
     flex-direction: column;
     background-color:bisque;
 }
+@media(max-width:730px){
+    .article-list{
+        width:95vw;
+        // height:100vh;
+    }
+}
 </style>

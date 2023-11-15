@@ -79,7 +79,11 @@ onMounted(() => {
             </ul>
             <!-- header nav dropdown -->
             <div class="app-header-nav-dropdown">
-                <div>下拉菜单</div>
+                <div class="dropdown-icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-xuanxiang"></use>
+                    </svg>
+                </div>
                 <ul class="dropdown-content">
                     <li>
                         <RouterLink to="/" :class="{ 'active': $route.path === '/' }">首页</RouterLink>
@@ -255,7 +259,7 @@ onMounted(() => {
             font-size: 16px;
             line-height: 32px;
             height: 32px;
-            width: 80px;
+            width: 50px;
             justify-content: center;
             margin-right: 150px;
             margin-left: 50px;
@@ -263,6 +267,10 @@ onMounted(() => {
             color: var(--text-color2);
             border-radius: 4px;
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+
+            .dropdown-icon {
+                font-size: 20px;
+            }
 
             .dropdown-content {
                 display: none;
@@ -450,38 +458,38 @@ onMounted(() => {
 }
 
 @media (max-width: 900px) {
-    .creator-center {
-        display: none !important;
-    }
-}
-
-@media (max-width: 750px) {
     .app-header-nav {
         display: none !important;
     }
 }
 
-@media (min-width: 750px) {
+@media (min-width: 900px) {
     .app-header-nav-dropdown {
         display: none !important;
     }
 }
 
-@media (max-width: 510px) {
+@media (max-width: 630px) {
     .app-header-nav-dropdown {
         margin-left: 0 !important;
     }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 590px) {
     .app-header-nav-dropdown {
         margin-right: 50px !important;
     }
 }
 
-@media (max-width: 330px) {
+@media (max-width: 450px) {
     .app-header-nav-dropdown {
         margin-right: 0px !important;
     }
 }
+@media (max-width: 380px) {
+    .creator-center {
+        display: none !important;
+    }
+}
+
 </style>
