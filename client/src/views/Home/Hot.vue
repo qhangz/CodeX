@@ -1,4 +1,16 @@
 <script setup lang="ts">
+import { getArticleList } from '@/api/article'
+import { ref, onMounted } from 'vue'
+
+const articleList = ref([])
+const getArticle = async () => {
+    const res = await getArticleList()
+    articleList.value = res.data
+    console.log(articleList.value);
+}
+onMounted(() => {
+    getArticle()
+})
 
 </script>
 
@@ -17,5 +29,4 @@
     align-items: center;
     flex-direction: column;
 }
-
 </style>

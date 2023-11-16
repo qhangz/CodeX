@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"net/http"
+	// "net/http"
 
 	"codex.com/codex/controllers"
 	"codex.com/codex/middlewares"
@@ -21,6 +21,11 @@ func main() {
 	user:=r.Group("/user")
 	{
 		user.GET("/:id", controllers.UserId())
+	}
+
+	article:=r.Group("/article")
+	{
+		article.GET("/list", controllers.GetArticleList())
 	}
 
 	r.Run(":8080")
