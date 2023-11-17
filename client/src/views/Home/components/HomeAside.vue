@@ -11,12 +11,12 @@
 .home-aside {
     width: 260px;
     height: 100%;
-    background-color: aquamarine;
+    background-color: var(--bg1);
 }
-@media(max-width:1005px){
-    .home-aside{
+
+@media(max-width:1005px) {
+    .home-aside {
         display: none;
     }
 }
-
 </style>

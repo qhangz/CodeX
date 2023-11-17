@@ -76,6 +76,12 @@ const router = createRouter({
       name: 'login',
       component: () => import('../views/Login/index.vue')
     },
+    // article item page
+    {
+      path: '/article/:id',
+      name: 'article',
+      component: () => import('../views/Home/components/ArticleItem.vue')
+    },
 
     // about page
     {

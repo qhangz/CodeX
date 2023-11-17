@@ -25,7 +25,10 @@ func main() {
 
 	article:=r.Group("/article")
 	{
-		article.GET("/list", controllers.GetArticleList())
+		article.GET("/hot", controllers.GetArticleHot())
+		article.GET("/follow", controllers.GetArticleFollow())
+		article.GET("/frontend", controllers.GetArticleFrontend())
+		article.GET("/backend", controllers.GetArticleBackend())
 	}
 
 	r.Run(":8080")

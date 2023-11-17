@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { getArticleList } from '@/api/article'
+import { getArticleHot } from '@/api/article'
 import { ref, onMounted } from 'vue'
+import ArticleList from './components/ArticleList.vue'
 
-const articleList = ref([])
+const hotArticle = ref([])
 const getArticle = async () => {
-    const res = await getArticleList()
-    articleList.value = res.data
-    console.log(articleList.value);
+    const res = await getArticleHot()
+    hotArticle.value = res.data
+    // console.log(articleList.value);
 }
 onMounted(() => {
     getArticle()
@@ -16,8 +17,9 @@ onMounted(() => {
 
 <template>
     <div class="hot">
-        this is hot page
-
+        <div v-for="(item,index) in hotArticle" :key="index">
+            <ArticleList :articleList="item"></ArticleList>
+        </div>
     </div>
 </template>
 
