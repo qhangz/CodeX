@@ -1,4 +1,4 @@
-module codex.com/codex
+module github.com/codex
 
 go 1.20
 
