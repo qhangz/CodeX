@@ -14,7 +14,7 @@
     background-color: var(--bg1);
 }
 
-@media(max-width:1005px) {
+@media(max-width:1200px) {
     .home-aside {
         display: none;
     }

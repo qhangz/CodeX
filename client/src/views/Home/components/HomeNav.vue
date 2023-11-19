@@ -63,4 +63,9 @@
         color: var(--primary-100);
     }
 }
+@media(max-width:935px) {
+    .home-nav {
+        display: none;
+    }
+}
 </style>
