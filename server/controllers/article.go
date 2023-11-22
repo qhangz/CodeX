@@ -1,4 +1,4 @@
-package v1
+package controllers
 
 import (
 	"github.com/gin-gonic/gin"
@@ -8,7 +8,7 @@ import (
 
 func GetArticleList() gin.HandlerFunc{
 	return func(ctx *gin.Context){
-		data,err:=ioutil.ReadFile("./data/article_list.json")
+		data,err:=ioutil.ReadFile("./resource/article_list.json")
 		if err!=nil{
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error":"Failed to read file"})
 			return 
@@ -20,7 +20,7 @@ func GetArticleList() gin.HandlerFunc{
 // 热门文章
 func GetArticleHot() gin.HandlerFunc{
 	return func(ctx *gin.Context){
-		data,err:=ioutil.ReadFile("./data/article_hot.json")
+		data,err:=ioutil.ReadFile("./resource/article_hot.json")
 		if err!=nil{
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error":"Failed to read file"})
 			return 
@@ -32,7 +32,7 @@ func GetArticleHot() gin.HandlerFunc{
 // 关注文章
 func GetArticleFollow() gin.HandlerFunc{
 	return func(ctx *gin.Context){
-		data,err:=ioutil.ReadFile("./data/article_follow.json")
+		data,err:=ioutil.ReadFile("./resource/article_follow.json")
 		if err!=nil{
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error":"Failed to read file"})
 			return 
