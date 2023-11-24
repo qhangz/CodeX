@@ -22,3 +22,10 @@ func Cors() gin.HandlerFunc {
 		c.Next()
 	}
 }
+
+func AuthMiddleware() gin.HandlerFunc {
+    return func(c *gin.Context) {
+        // TODO: 验证身份认证信息
+        c.Next()
+    }
+}

@@ -2,7 +2,7 @@ import httpInstance from '@/utils/http'
 // 获取热门文章
 export const getArticleHot = () => {
     return httpInstance({
-        url: '/article/hot',
+        url: '/api/article/hot',
         method: 'get',
     })
 }
@@ -10,7 +10,7 @@ export const getArticleHot = () => {
 // 获取关注文章
 export const getArticleFollow = () => {
     return httpInstance({
-        url: '/article/follow',
+        url: '/api/article/follow',
         method: 'get',
     })
 }
@@ -18,7 +18,7 @@ export const getArticleFollow = () => {
 // 获取前端文章
 export const getArticleFrontend = () => {
     return httpInstance({
-        url: '/article/frontend',
+        url: '/api/article/frontend',
         method: 'get',
     })
 }
@@ -26,7 +26,7 @@ export const getArticleFrontend = () => {
 // 获取后端文章
 export const getArticleBackend = () => {
     return httpInstance({
-        url: '/article/backend',
+        url: '/api/article/backend',
         method: 'get',
     })
 }
