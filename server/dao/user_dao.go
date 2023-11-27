@@ -12,3 +12,10 @@ func GetUserByUsername(username string) (*model.User, error) {
     }
     return &user, nil
 }
+
+func CreateUser(user *model.User) error {
+    if err := db.DB.Create(user).Error; err != nil {
+        return err
+    }
+    return nil
+}

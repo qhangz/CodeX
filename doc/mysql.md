@@ -8,5 +8,7 @@ username                char
 password                char
 age                     int
 email                   char
-personalized_signature  char
+summary                 char
+created_at
+avatar_img
 ```
