@@ -1,6 +1,8 @@
 package router
 
 import (
+	// "os/user"
+
 	"github.com/codex/controller"
 	"github.com/codex/middlewares"
 	"github.com/gin-gonic/gin"
@@ -19,6 +21,12 @@ func InitRouter() *gin.Engine {
 		article.GET("/follow", controller.GetArticleFollow())
 		article.GET("/frontend", controller.GetArticleFrontend())
 		article.GET("/backend", controller.GetArticleBackend())
+	}
+
+	user := router.Group("/api/user")
+	{
+		user.POST("/register", controller.Register)
+		user.POST("/login", controller.Login)
 	}
 
 	return router

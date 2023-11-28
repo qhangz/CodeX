@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
+import { userRegister } from '@/api/user'
+
 const state = reactive({
     isLogin: true,
     emailError: false,
@@ -20,8 +22,10 @@ const login = () => {
 }
 // register function
 const register = () => {
-    console.log('register');
-    console.log(form);
+    userRegister(form)
+    
+    // console.log('register');
+    // console.log(form);
 }
 // changeType function
 const changeType = () => {

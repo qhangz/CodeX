@@ -1,6 +1,9 @@
 database:
-  host: localhost
-  port: 3306
-  username: root
-  password: password
-  dbname: my_community
+  DriveName: mysql
+  Host: localhost
+  Port: 3306
+  Username: root
+  Password: password
+  DBName: codex
+  Charset: utf8
+

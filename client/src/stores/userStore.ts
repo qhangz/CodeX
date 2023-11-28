@@ -1,4 +1,23 @@
 // 管理用户数据相关
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+import { userLogin } from '@/api/user'
+
+export const useUserStore = defineStore('user', () => {
+    // 管理用户数据的state
+    const userInfo = ref({})
+    // 获取接口数据的action函数
+    const getUserInfo = async ({ username, password }: { username: string, password: any }) => {
+        const res = await userLogin(username, password)
+        userInfo.value = res
+    }
+    return {
+        userInfo,
+        getUserInfo
+    }
+})
+
+
 
 // import { defineStore } from 'pinia'
 // import { ref } from 'vue'
