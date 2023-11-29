@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/views/Layout/index.vue'
+import { useUserStore } from '@/stores/userStore'
+import { createPinia } from 'pinia';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -101,10 +103,17 @@ const router = createRouter({
 const loginMsg = () => {
   ElMessage.error('请先登录！')
 }
-// 设置路由守卫（判断登录状态）
-router.beforeEach((to, from, next) => {
+
+let userStore: any = null
+// 前置拦截器
+const interceptor = router.beforeEach(async (to, from, next) => {
+  // userStore = useUserStore()
+  if (userStore===null) {
+    userStore =await useUserStore()
+  }
+  console.log("router.ts:",userStore.userState.isLogin);
   if (to.meta.isAuth) { // 对需要对登录的页面进行判断
-    if (localStorage.isLogin === 'true') {
+    if (userStore.userState.isLogin === true) {
       next()  // 路由页面防止
     } else {
       next('/login')
@@ -114,5 +123,67 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+router.beforeEach(interceptor)
+
+// 设置路由守卫（判断登录状态）
+// router.beforeEach((to, from, next) => {
+//   // let isLogin = useUserStore().userState.isLogin
+//   const userStore = useUserStore()
+//   console.log(userStore.userState.isLogin);
+//   if (to.meta.isAuth) { // 对需要对登录的页面进行判断
+//     if (userStore.userState.isLogin === true) {
+//       next()  // 路由页面防止
+//     } else {
+//       next('/login')
+//       loginMsg()
+//     }
+//   } else {
+//     next()
+//   }
+// })
+
+// router.beforeEach((to, from, next) => {
+//   const store = useUserStore()
+//   if (to.meta.isAuth && !store.userState.isLogin) {
+//     next('/login')
+//     loginMsg()
+//   } else {
+//     next()
+//   }
+// })
+
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.length === 0) {
+//     // 路由不存在
+//     next('/404');
+//   } else {
+//     next();
+//   }
+// });
+
+// router.beforeEach((to) => {
+//   // ✅ 这样做是可行的，因为路由器是在其被安装之后开始导航的，
+//   // 而此时 Pinia 也已经被安装。
+//   const store = useUserStore()
+
+//   if (to.meta.isAuth && !store.userState.isLogin) return '/login'
+// })
+// router.beforeEach((to, from, next) => {
+//   // 我们想要在这里使用 store
+//   if (store.userState.isLogin) next()
+//   else next('/login')
+// })
+// router.beforeEach((to, from, next) => {
+//   if (to.meta.isAuth) { // 对需要对登录的页面进行判断
+//     if (localStorage.isLogin === 'true') {
+//       next()  // 路由页面防止
+//     } else {
+//       next('/login')
+//       loginMsg()
+//     }
+//   } else {
+//     next()
+//   }
+// })
 
 export default router

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import { userRegister } from '@/api/user'
+import { useUserStore } from '@/stores/userStore';
 
 const state = reactive({
     isLogin: true,
@@ -17,15 +18,24 @@ const form = reactive({
 
 // login function
 const login = () => {
-    console.log('login');
-    console.log(form);
+    console.log('login:');
+    // console.log(form);
+    // useUserStore().$userState.isLogin = true
+    // useUserStore().userState.isLogin = true
+    console.log(useUserStore().userState.isLogin);
+    useUserStore().changeLoginState(true)
+    console.log(useUserStore().userState.isLogin);
 }
 // register function
 const register = () => {
-    userRegister(form)
-    
-    // console.log('register');
+    console.log("register:");
+    // userRegister(form)
+    // useUserStore().userState.isLogin = false
+    console.log(useUserStore().userState.isLogin);
+    // console.log('register:');
     // console.log(form);
+    useUserStore().changeLoginState(false)
+    console.log(useUserStore().userState.isLogin);
 }
 // changeType function
 const changeType = () => {
