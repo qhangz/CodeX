@@ -3,8 +3,11 @@ package service
 import (
 	"errors"
 	// "fmt"
-	"golang.org/x/crypto/bcrypt"
+	// "encoding/json"
 	"regexp"
+	"strconv"
+
+	"golang.org/x/crypto/bcrypt"
 
 	"github.com/codex/dao"
 	"github.com/codex/model"
@@ -64,34 +67,38 @@ func Register(newUser model.User) error {
 	}
 	newUser.Password = string(hashPassword)
 
+	// 初始化summary和avatar_image
+	newUser.Summary = "This is codex explorer"
+	newUser.Avatar_image = "https://s2.loli.net/2023/12/07/ObzivQC2fqpTZlx.jpg"
+
+
 	return dao.Register(newUser)
 }
 
 // user login
-func Login(user model.User) (string, error) {
-	// 数据验证
+func Login(user model.User) (*model.User, string, error) {
+	// 数据验证(username和password)
 	if len(user.Username) == 0 || len(user.Password) < 6 {
-		return "", ErrorLoginInfo
+		return nil, "", ErrorLoginInfo
 	}
 
 	// 检查用户名存在
 	thisUser, err := dao.GetUserByUsername(user.Username)
 	if err != nil {
-		return "", ErrorLoginFailed
+		return nil, "", ErrorLoginFailed
 	}
 	if thisUser == nil {
-		return "", ErrorUserNotExit
+		return nil, "", ErrorUserNotExit
 	}
 
 	// 检查密码是否正确
-
-
 	err = bcrypt.CompareHashAndPassword([]byte(thisUser.Password), []byte(user.Password))
 	if err != nil {
-		return "", ErrorPasswordWrong
+		return nil, "", ErrorPasswordWrong
 	}
-	
-	// token
 
-	return "17", nil
+	// token
+	token := strconv.FormatUint(uint64(thisUser.ID), 10)
+
+	return thisUser, token, nil
 }

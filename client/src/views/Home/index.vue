@@ -8,7 +8,7 @@ import BackTop from '@/components/BackTop.vue'
     <div class="home">
         <HomeNav />
         <router-view />
-        <HomeAside />
+        <!-- <HomeAside /> -->
         <BackTop />
     </div>
 </template>

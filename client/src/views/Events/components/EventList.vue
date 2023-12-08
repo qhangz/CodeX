@@ -7,37 +7,37 @@
         <a href="javascript:;" class="event-item">
             <div class="inner">
                 <div class="banner"></div>
-                <div class="message">message</div>
+                <div class="message">event</div>
             </div>
         </a>
         <div class="event-item">
             <div class="inner">
                 <div class="banner"></div>
-                <div class="message">message</div>
+                <div class="message">event</div>
             </div>
         </div>
         <div class="event-item">
             <div class="inner">
                 <div class="banner"></div>
-                <div class="message">message</div>
+                <div class="message">event</div>
             </div>
         </div>
         <div class="event-item">
             <div class="inner">
                 <div class="banner"></div>
-                <div class="message">message</div>
+                <div class="message">event</div>
             </div>
         </div>
         <div class="event-item">
             <div class="inner">
                 <div class="banner"></div>
-                <div class="message">message</div>
+                <div class="message">event</div>
             </div>
         </div>
         <div class="event-item">
             <div class="inner">
                 <div class="banner"></div>
-                <div class="message">message</div>
+                <div class="message">event</div>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
 import { defineProps } from 'vue';
 import { useRouter } from 'vue-router'
 const articleList = defineProps(['articleList'])
-console.log(articleList);
+// console.log(articleList);
 const router = useRouter()
 const toArticle = () => {
     // router.push({

@@ -9,8 +9,9 @@ import (
 )
 
 func InitRouter() *gin.Engine {
-	gin.SetMode(gin.DebugMode)
-	router := gin.New()
+	// gin.SetMode(gin.DebugMode)
+	// router := gin.New()
+	router := gin.Default()
 	router.Use(middlewares.Cors())
 
 	router.GET("/users/:username", controller.GetUserByUsername)

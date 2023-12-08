@@ -1,12 +1,19 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, reactive } from 'vue'
 import { Search } from '@element-plus/icons-vue'    // 引入搜索图标
+import { useUserStore } from '@/stores/userStore'
 
 import { useScroll } from '@vueuse/core'
 const { y } = useScroll(window)
 
 // user info interface
-const isLogin = ref(true)
+useUserStore().isUserLogin()
+const isLogin = ref(useUserStore().userState.isLogin)
+// const isLogin = ref(localStorage.getItem('isLogin') ? true : false)
+
+// user avatar image
+const avatarImage = reactive(localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')!).avatar_image : '')
+// console.log('avatarImage',avatarImage);
 
 // 自动补全输入框
 interface RestaurantItem {
@@ -117,7 +124,7 @@ onMounted(() => {
             <!-- creaor center -->
             <div class="creator-center">
                 <div class="btn">
-                    <RouterLink to="/">创作中心</RouterLink>
+                    <RouterLink to="/user">创作中心</RouterLink>
                 </div>
                 <div class="dropdown-content">
                     <ul class="drop-item">
@@ -170,12 +177,13 @@ onMounted(() => {
                         </svg>
                         <div class="dropdown">
                             <ul class="drop-item">
-
                             </ul>
                         </div>
                     </div>
                     <div class="avatar">
-                        <div class="icon"></div>
+                        <RouterLink to="/user">
+                            <img class="icon" :src="avatarImage" />
+                        </RouterLink>
                     </div>
                 </div>
             </div>
@@ -410,7 +418,7 @@ onMounted(() => {
                     .icon {
                         width: 100%;
                         height: 100%;
-                        background: url('@/assets/images/myavatar.jpg') no-repeat center 0px / contain;
+                        // background: url('@/assets/images/myavatar.jpg') no-repeat center 0px / contain;
                         border-radius: 50%;
                     }
                 }
@@ -486,10 +494,10 @@ onMounted(() => {
         margin-right: 0px !important;
     }
 }
+
 @media (max-width: 380px) {
     .creator-center {
         display: none !important;
     }
 }
-
 </style>

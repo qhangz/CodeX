@@ -3,46 +3,82 @@ import { reactive } from 'vue'
 import { userRegister } from '@/api/user'
 import { useUserStore } from '@/stores/userStore';
 
+
+// import axios from 'axios';
 const state = reactive({
     isLogin: true,
     emailError: false,
     passwordError: false,
     existed: false,
-
+    passwordTooShort: false,
 })
 const form = reactive({
     username: '',
-    useremail: '',
-    userpwd: ''
+    password: '',
+    email: ''
 })
 
 // login function
+const loginWaring = () => {
+    ElMessage({
+        message: '请完成信息输入',
+        type: 'warning',
+    })
+}
 const login = () => {
-    console.log('login:');
-    // console.log(form);
-    // useUserStore().$userState.isLogin = true
-    // useUserStore().userState.isLogin = true
-    console.log(useUserStore().userState.isLogin);
-    useUserStore().changeLoginState(true)
-    console.log(useUserStore().userState.isLogin);
+    if (form.username != '' && form.password != '') {
+        useUserStore().login({ username: form.username, password: form.password })
+    } else {
+        loginWaring()
+    }
 }
+
 // register function
-const register = () => {
-    console.log("register:");
-    // userRegister(form)
-    // useUserStore().userState.isLogin = false
-    console.log(useUserStore().userState.isLogin);
-    // console.log('register:');
-    // console.log(form);
-    useUserStore().changeLoginState(false)
-    console.log(useUserStore().userState.isLogin);
+const registerSuccess = () => {
+    ElMessage({
+        message: '注册成功',
+        type: 'success',
+    })
 }
+const registerFail = () => {
+    ElMessage.error('注册失败')
+}
+const registerWaring = () => {
+    ElMessage({
+        message: '请完成信息输入',
+        type: 'warning',
+    })
+}
+const register = () => {
+    if (form.username != '' && form.email != '' && form.password != '') {
+        if (form.password.length < 6) {
+            state.passwordTooShort = true
+            return
+        } else {
+            state.passwordTooShort = false
+            const res = userRegister(form.username, form.password, form.email).then(res => {
+                console.log("res of register:", res);
+                if (res.code == 200) {
+                    registerSuccess()
+                    changeType()
+                } else {
+                    registerFail()
+                }
+            })
+        }
+    } else {
+        registerWaring()
+    }
+}
+state.passwordTooShort = false
+
+
 // changeType function
 const changeType = () => {
     state.isLogin = !state.isLogin
     form.username = ''
-    form.useremail = ''
-    form.userpwd = ''
+    form.password = ''
+    form.email = ''
 }
 </script>
 
@@ -50,26 +86,17 @@ const changeType = () => {
     <div class="login">
         <div class="contain">
             <div class="big-box" :class="{ active: state.isLogin }">
+                <!-- 账号登录 -->
                 <div class="big-contain" v-if="state.isLogin">
                     <div class="btitle">账户登录</div>
                     <div class="bform">
                         <input type="text" placeholder="用户名" v-model="form.username">
                         <span class="errTips" v-if="state.emailError">* 邮箱填写错误 *</span>
-                        <input type="password" placeholder="密码" v-model="form.userpwd">
+                        <input type="password" placeholder="密码" v-model="form.password">
                         <span class="errTips" v-if="state.passwordError">* 密码填写错误 *</span>
-                        <div class="otherWay">其他登录： Github</div>
+                        <div class="otherWay">其他登录： Github账号登录</div>
                     </div>
                     <button class="bbutton" @click="login">登录</button>
-                </div>
-                <div class="big-contain" key="bigContainRegister" v-else>
-                    <div class="btitle">创建账户</div>
-                    <div class="bform">
-                        <input type="text" placeholder="用户名" v-model="form.username">
-                        <span class="errTips" v-if="state.existed">* 用户名已经存在！ *</span>
-                        <input type="text" placeholder="邮箱" v-model="form.useremail">
-                        <input type="password" placeholder="密码" v-model="form.userpwd">
-                    </div>
-                    <button class="bbutton" @click="register">注册</button>
                 </div>
                 <div class="instruction" v-if="state.isLogin">
                     <span>注册登录即表示同意</span>
@@ -77,14 +104,28 @@ const changeType = () => {
                     <span>和</span>
                     <RouterLink to="/about">&nbsp;隐私政策&nbsp;</RouterLink>
                 </div>
+                <!-- 注册 -->
+                <div class="big-contain" key="bigContainRegister" v-else>
+                    <div class="btitle">创建账户</div>
+                    <div class="bform">
+                        <input type="text" placeholder="用户名" v-model="form.username">
+                        <span class="errTips" v-if="state.existed">* 用户名已经存在！ *</span>
+                        <input type="text" placeholder="邮箱" v-model="form.email">
+                        <input type="password" placeholder="密码" v-model="form.password">
+                        <span class="errTips" v-if="state.passwordTooShort">* 密码需要大于六位！ *</span>
+                    </div>
+                    <button class="bbutton" @click="register">注册</button>
+                </div>
             </div>
 
             <div class="small-box" :class="{ active: state.isLogin }">
+                <!-- 登录跳转注册 -->
                 <div class="small-contain" key="smallContainRegister" v-if="state.isLogin">
                     <div class="stitle">Hello World!</div>
                     <p class="scontent">和我们一起旅行</p>
                     <button class="sbutton" @click="changeType">注册</button>
                 </div>
+                <!-- 注册跳转登录 -->
                 <div class="small-contain" key="smallContainLogin" v-else>
                     <div class="stitle">Welcome!</div>
                     <p class="scontent">进入奇妙世界吧</p>

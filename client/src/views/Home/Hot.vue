@@ -7,7 +7,7 @@ const hotArticle = ref([])
 const getArticle = async () => {
     const res = await getArticleHot()
     hotArticle.value = res.data
-    console.log(hotArticle.value);
+    // console.log(hotArticle.value);
 }
 onMounted(() => {
     getArticle()

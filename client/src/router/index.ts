@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 import Layout from '@/views/Layout/index.vue'
 import { useUserStore } from '@/stores/userStore'
 import { createPinia } from 'pinia';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -16,26 +16,41 @@ const router = createRouter({
           path: '/',
           name: 'home',
           component: () => import('../views/Home/index.vue'),
+          meta: { 
+            title: 'CodeX - Home' 
+          },
           children: [
             {
               path: '/',
               name: 'hot',
-              component: () => import('../views/Home/Hot.vue')
+              component: () => import('../views/Home/Hot.vue'),
+              meta: { 
+                title: 'CodeX - 综合' 
+              },
             },
             {
               path: '/following',
               name: 'following',
-              component: () => import('../views/Home/Following.vue')
+              component: () => import('../views/Home/Following.vue'),
+              meta: { 
+                title: 'CodeX - 关注' 
+              },
             },
             {
               path: '/frontend',
               name: 'frontend',
-              component: () => import('../views/Home/Frontend.vue')
+              component: () => import('../views/Home/Frontend.vue'),
+              meta: { 
+                title: 'CodeX - 前端' 
+              },
             },
             {
               path: '/backend',
               name: 'backend',
-              component: () => import('../views/Home/Backend.vue')
+              component: () => import('../views/Home/Backend.vue'),
+              meta: { 
+                title: 'CodeX - 后端' 
+              },
             }
           ]
         },
@@ -43,31 +58,46 @@ const router = createRouter({
           // events page
           path: '/events',
           name: 'events',
-          component: () => import('../views/Events/index.vue')
+          component: () => import('../views/Events/index.vue'),
+          meta: { 
+            title: 'CodeX - events' 
+          },
         },
         {
           // chanllenge page
           path: '/chanllenge',
           name: 'chanllenge',
-          component: () => import('../views/Chanllenge/index.vue')
+          component: () => import('../views/Chanllenge/index.vue'),
+          meta: { 
+            title: 'CodeX - chanllenge' 
+          },
         },
         {
           // course page
           path: '/course',
           name: 'course',
-          component: () => import('../views/Course/index.vue')
+          component: () => import('../views/Course/index.vue'),
+          meta: { 
+            title: 'CodeX - course' 
+          },
         },
         {
           // games page
           path: '/games',
           name: 'games',
-          component: () => import('../views/Games/index.vue')
+          component: () => import('../views/Games/index.vue'),
+          meta: { 
+            title: 'CodeX - Games' 
+          },
         },
         {
           // user page
           path: '/user',
           name: 'user',
-          component: () => import('../views/User/index.vue')
+          component: () => import('../views/User/index.vue'),
+          meta: { 
+            title: 'CodeX - user' 
+          },
         }
       ]
     },
@@ -76,13 +106,19 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/Login/index.vue')
+      component: () => import('../views/Login/index.vue'),
+      meta: { 
+        title: 'CodeX - 登录' 
+      },
     },
     // article item page
     {
       path: '/article/:id',
       name: 'article',
-      component: () => import('../views/Home/components/ArticleItem.vue')
+      component: () => import('../views/Home/components/ArticleItem.vue'),
+      meta: { 
+        title: 'CodeX - 文章详情' 
+      },
     },
 
     // about page
@@ -94,7 +130,7 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/About/AboutView.vue'),
       meta: {
-        isAuth: true
+        title: 'CodeX - 关于' 
       }
     }
   ]
@@ -104,53 +140,23 @@ const loginMsg = () => {
   ElMessage.error('请先登录！')
 }
 
-let userStore: any = null
-// 前置拦截器
-const interceptor = router.beforeEach(async (to, from, next) => {
-  // userStore = useUserStore()
-  if (userStore===null) {
-    userStore =await useUserStore()
+// 通过localStorage获取登录状态
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title as string ? to.meta.title : '加载中';
   }
-  console.log("router.ts:",userStore.userState.isLogin);
-  if (to.meta.isAuth) { // 对需要对登录的页面进行判断
-    if (userStore.userState.isLogin === true) {
-      next()  // 路由页面防止
+  next();
+  if (to.meta.isAuth) { // 判断该路由是否需要登录权限
+    if (localStorage.isLogin === 'true') {
+      next();
     } else {
       next('/login')
       loginMsg()
     }
   } else {
-    next()
+    next();
   }
 })
-router.beforeEach(interceptor)
-
-// 设置路由守卫（判断登录状态）
-// router.beforeEach((to, from, next) => {
-//   // let isLogin = useUserStore().userState.isLogin
-//   const userStore = useUserStore()
-//   console.log(userStore.userState.isLogin);
-//   if (to.meta.isAuth) { // 对需要对登录的页面进行判断
-//     if (userStore.userState.isLogin === true) {
-//       next()  // 路由页面防止
-//     } else {
-//       next('/login')
-//       loginMsg()
-//     }
-//   } else {
-//     next()
-//   }
-// })
-
-// router.beforeEach((to, from, next) => {
-//   const store = useUserStore()
-//   if (to.meta.isAuth && !store.userState.isLogin) {
-//     next('/login')
-//     loginMsg()
-//   } else {
-//     next()
-//   }
-// })
 
 // router.beforeEach((to, from, next) => {
 //   if (to.matched.length === 0) {
@@ -161,21 +167,14 @@ router.beforeEach(interceptor)
 //   }
 // });
 
-// router.beforeEach((to) => {
-//   // ✅ 这样做是可行的，因为路由器是在其被安装之后开始导航的，
-//   // 而此时 Pinia 也已经被安装。
-//   const store = useUserStore()
-
-//   if (to.meta.isAuth && !store.userState.isLogin) return '/login'
-// })
-// router.beforeEach((to, from, next) => {
-//   // 我们想要在这里使用 store
-//   if (store.userState.isLogin) next()
-//   else next('/login')
-// })
-// router.beforeEach((to, from, next) => {
+// 通过useUserStore()获取userStore，进行登录状态判断
+// let userStore: any = null
+// router.beforeEach(async (to, from, next) => {
+//   if (userStore === null) {
+//     userStore = await useUserStore()
+//   }
 //   if (to.meta.isAuth) { // 对需要对登录的页面进行判断
-//     if (localStorage.isLogin === 'true') {
+//     if (userStore.userState.isLogin === true) {
 //       next()  // 路由页面防止
 //     } else {
 //       next('/login')

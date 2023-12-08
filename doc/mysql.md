@@ -1,5 +1,5 @@
 # mysql设置
-databases name: my_community
+databases name: codex
 ## table name
 ### user
 ```sql
