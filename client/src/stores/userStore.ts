@@ -56,7 +56,7 @@ export const useUserStore = defineStore('user', () => {
                 userState.token = res.data.token
                 userState.isLogin = true
                 userInfo.value = res.data.userInfo
-                console.log("1", userInfo.value);
+                // console.log("1", userInfo.value);
                 // localstorage存储登录状态
                 localStorage.setItem('isLogin', 'true')
                 localStorage.setItem('token', res.data.token)

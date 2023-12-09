@@ -1,26 +1,6 @@
 import httpInstance from '@/utils/http'
 
 // user register
-// export const userRegister = (parma: any) => {
-//     return httpInstance({
-//         url: '/api/user/register',
-//         method: 'POST',
-//         data: parma
-//     })
-// }
-
-// export const userRegister=(parma:any)=>{
-//     return httpInstance({
-//         url:'/api/user/register',
-//         method:'POST',
-//         data:{
-//             username:parma.username,
-//             password:parma.password,
-//             email:parma.email,
-//         }
-//     })
-// }
-
 export const userRegister = (username: string, password: any, email: any) => {
     return httpInstance({
         url: '/api/user/register',
@@ -43,6 +23,22 @@ export const userLogin = (username: string, password: any) => {
             password,
         }
     })
+}
+
+// user list
+export const getUserList = () => {
+    return httpInstance({
+        url: '/api/user/list',
+        method: 'GET',
+    })
+}
+
+// get user info by username
+export const getUserByUsername = (username: string) => {
+    return httpInstance({
+        url: `/api/user/info/${username}`,
+        method: 'GET'
+    });
 }
 
 // user info

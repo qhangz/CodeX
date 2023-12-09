@@ -10,7 +10,6 @@ import EventList from './components/EventList.vue'
 
 <style lang="scss" scoped>
 .events {
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

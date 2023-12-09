@@ -13,7 +13,7 @@ const isLogin = ref(useUserStore().userState.isLogin)
 
 // user avatar image
 const avatarImage = reactive(localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')!).avatar_image : '')
-// console.log('avatarImage',avatarImage);
+console.log('avatarImage',avatarImage);
 
 // 自动补全输入框
 interface RestaurantItem {
@@ -61,7 +61,7 @@ onMounted(() => {
         <div class="container">
             <!-- logo -->
             <h1 class="logo">
-                <RouterLink to="/">CodeX</RouterLink>
+                <RouterLink to="/codexplores">CodeX</RouterLink>
             </h1>
             <!-- header nav -->
             <ul class="app-header-nav">

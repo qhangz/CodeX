@@ -9,6 +9,13 @@ import (
 	"github.com/codex/service"
 )
 
+// @Title			get user info by username
+// @Description		根据用户名获取用户信息
+// @Success			200			object		controllers.Response	"code,data"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			user
+// @Router			/api/user/info/:username [get]
 func GetUserByUsername(c *gin.Context) {
 	username := c.Param("username")
 	user, err := service.GetUserByUsername(username)
@@ -19,7 +26,10 @@ func GetUserByUsername(c *gin.Context) {
 		})
 		return
 	}
-	c.JSON(http.StatusOK, user)
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"data": user,
+	})
 }
 
 // @Title			user register
@@ -31,7 +41,7 @@ func GetUserByUsername(c *gin.Context) {
 // @Failure			401			object		controllers.Response	"各种错误"
 // @Failure 		500 object controllers.Response "服务器内部错误"
 // @Tags			user
-// @Router			/user/register [post]
+// @Router			/api/user/register [post]
 func Register(c *gin.Context) {
 	// get user info from request
 	newUser := model.User{
@@ -63,7 +73,7 @@ func Register(c *gin.Context) {
 // @Failure			401			object		controllers.Response	"各种错误"
 // @Failure 		500 object controllers.Response "服务器内部错误"
 // @Tags			user
-// @Router			/user/login [post]
+// @Router			/api/user/login [post]
 func Login(c *gin.Context) {
 	// get user info from request
 	user := model.User{
@@ -99,5 +109,27 @@ func Login(c *gin.Context) {
 			},
 		},
 		"msg": "登录成功",
+	})
+}
+
+// @Title			user list
+// @Description		获取用户列表信息
+// @Success			200			object		controllers.Response	"code,data,msg"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			user
+// @Router			/api/user/list [get]
+func GetUserList(c *gin.Context) {
+	userList, err := service.GetUserList()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":  "400",
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"data": userList,
 	})
 }

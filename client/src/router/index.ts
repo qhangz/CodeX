@@ -94,7 +94,16 @@ const router = createRouter({
           // user page
           path: '/user',
           name: 'user',
-          component: () => import('../views/User/index.vue'),
+          component: () => import('../views/User/Mine.vue'),
+          meta: { 
+            title: 'CodeX - user' 
+          },
+        },
+        {
+          // codexplore page
+          path: '/codexplores',
+          name: 'codexplores',
+          component: () => import('../views/User/codexplores.vue'),
           meta: { 
             title: 'CodeX - user' 
           },

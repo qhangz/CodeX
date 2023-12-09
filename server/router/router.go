@@ -14,7 +14,7 @@ func InitRouter() *gin.Engine {
 	router := gin.Default()
 	router.Use(middlewares.Cors())
 
-	router.GET("/users/:username", controller.GetUserByUsername)
+	// router.GET("/users/:username", controller.GetUserByUsername)
 
 	article := router.Group("/api/article")
 	{
@@ -28,6 +28,8 @@ func InitRouter() *gin.Engine {
 	{
 		user.POST("/register", controller.Register)
 		user.POST("/login", controller.Login)
+		user.GET("/list", controller.GetUserList)
+		user.GET("/info/:username", controller.GetUserByUsername)
 	}
 
 	return router

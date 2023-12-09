@@ -50,3 +50,13 @@ func IsUsernameExist(username string) bool {
 func Register(user model.User) error {
     return db.DB.Create(&user).Error
 }
+
+// user list
+func GetUserList() ([]model.User, error) {
+	var users []model.User
+	// 返回所有用户的信息
+	if err := db.DB.Find(&users).Error; err != nil {
+		return nil, err
+	}
+	return users, nil
+}
