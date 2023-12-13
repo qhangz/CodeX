@@ -7,14 +7,14 @@ console.log(articleId);
 </script>
 
 <template>
-    <div class="article-item">
+    <div class="article">
         this is article detials page
 
     </div>
 </template>
 
 <style lang="scss" scoped>
-.article-item {
+.article {
     width: 750px;
     display: flex;
     justify-content: center;

@@ -16,40 +16,40 @@ const router = createRouter({
           path: '/',
           name: 'home',
           component: () => import('../views/Home/index.vue'),
-          meta: { 
-            title: 'CodeX - Home' 
+          meta: {
+            title: 'CodeX - Home'
           },
           children: [
             {
               path: '/',
               name: 'hot',
               component: () => import('../views/Home/Hot.vue'),
-              meta: { 
-                title: 'CodeX - 综合' 
+              meta: {
+                title: 'CodeX - 综合'
               },
             },
             {
               path: '/following',
               name: 'following',
               component: () => import('../views/Home/Following.vue'),
-              meta: { 
-                title: 'CodeX - 关注' 
+              meta: {
+                title: 'CodeX - 关注'
               },
             },
             {
               path: '/frontend',
               name: 'frontend',
               component: () => import('../views/Home/Frontend.vue'),
-              meta: { 
-                title: 'CodeX - 前端' 
+              meta: {
+                title: 'CodeX - 前端'
               },
             },
             {
               path: '/backend',
               name: 'backend',
               component: () => import('../views/Home/Backend.vue'),
-              meta: { 
-                title: 'CodeX - 后端' 
+              meta: {
+                title: 'CodeX - 后端'
               },
             }
           ]
@@ -59,8 +59,8 @@ const router = createRouter({
           path: '/events',
           name: 'events',
           component: () => import('../views/Events/index.vue'),
-          meta: { 
-            title: 'CodeX - events' 
+          meta: {
+            title: 'CodeX - events'
           },
         },
         {
@@ -68,8 +68,8 @@ const router = createRouter({
           path: '/chanllenge',
           name: 'chanllenge',
           component: () => import('../views/Chanllenge/index.vue'),
-          meta: { 
-            title: 'CodeX - chanllenge' 
+          meta: {
+            title: 'CodeX - chanllenge'
           },
         },
         {
@@ -77,8 +77,8 @@ const router = createRouter({
           path: '/course',
           name: 'course',
           component: () => import('../views/Course/index.vue'),
-          meta: { 
-            title: 'CodeX - course' 
+          meta: {
+            title: 'CodeX - course'
           },
         },
         {
@@ -86,8 +86,8 @@ const router = createRouter({
           path: '/games',
           name: 'games',
           component: () => import('../views/Games/index.vue'),
-          meta: { 
-            title: 'CodeX - Games' 
+          meta: {
+            title: 'CodeX - Games'
           },
         },
         {
@@ -95,8 +95,8 @@ const router = createRouter({
           path: '/user',
           name: 'user',
           component: () => import('../views/User/Mine.vue'),
-          meta: { 
-            title: 'CodeX - user' 
+          meta: {
+            title: 'CodeX - user'
           },
         },
         {
@@ -104,8 +104,8 @@ const router = createRouter({
           path: '/codexplores',
           name: 'codexplores',
           component: () => import('../views/User/codexplores.vue'),
-          meta: { 
-            title: 'CodeX - user' 
+          meta: {
+            title: 'CodeX - user'
           },
         }
       ]
@@ -116,17 +116,17 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: () => import('../views/Login/index.vue'),
-      meta: { 
-        title: 'CodeX - 登录' 
+      meta: {
+        title: 'CodeX - 登录'
       },
     },
     // article item page
     {
       path: '/article/:id',
       name: 'article',
-      component: () => import('../views/Home/components/ArticleItem.vue'),
-      meta: { 
-        title: 'CodeX - 文章详情' 
+      component: () => import('../views/Article/index.vue'),
+      meta: {
+        title: 'CodeX - 文章详情'
       },
     },
 
@@ -139,7 +139,7 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/About/AboutView.vue'),
       meta: {
-        title: 'CodeX - 关于' 
+        title: 'CodeX - 关于'
       }
     }
   ]
