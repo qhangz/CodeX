@@ -2,14 +2,14 @@ package controller
 
 import (
 	"net/http"
-
+	"strconv"
 	"github.com/gin-gonic/gin"
 
 	"github.com/codex/model"
 	"github.com/codex/service"
 )
 
-// @Title			get user info by username
+// @Title			get user info by username from request
 // @Description		根据用户名获取用户信息
 // @Success			200			object		controllers.Response	"code,data"
 // @Failure			401			object		controllers.Response	"各种错误"
@@ -131,5 +131,194 @@ func GetUserList(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code": "200",
 		"data": userList,
+	})
+}
+
+// @Title			user username update
+// @Description		使用用户名修改用户信息(username,password,email,age,summary,avatar_image)
+// @Param			username	formData	string		true	"用户名"
+// @Param			newusername	formData	string		true	"新用户名"
+// @Success			200			object		controllers.Response	"code,data,msg"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			user
+// @Router			/api/user/update/username [post]
+func UpdateUsername(c *gin.Context) {
+	// get user info from request
+	user := model.User{
+		Username: c.PostForm("username"),
+	}
+	newUsername := c.PostForm("newusername")
+
+	err := service.UpdateUsername(user, newUsername)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code":  "400",
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"msg":  "update username success",
+	})
+}
+
+// @Title			user password update
+// @Description		使用用户名修改用户信息(username,password,email,age,summary,avatar_image)
+// @Param			username	formData	string		true	"用户名"
+// @Param			password	formData	string		true	"密码"
+// @Param			newpassword	formData	string		true	"新密码"
+// @Success			200			object		controllers.Response	"code,data,msg"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			user
+// @Router			/api/user/update/password [post]
+func UpdatePassword(c *gin.Context) {
+	// get user info from request
+	user := model.User{
+		Username: c.PostForm("username"),
+		Password: c.PostForm("password"),
+	}
+	newPassword := c.PostForm("newpassword")
+
+	err := service.UpdatePassword(user, newPassword)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code":  "400",
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"msg":  "update password success",
+	})
+}
+
+// @Title			user email update
+// @Description		使用用户名修改用户信息(username,password,email,age,summary,avatar_image)
+// @Param			username	formData	string		true	"用户名"
+// @Param			newemail	formData	string		true	"新邮箱"
+// @Success			200			object		controllers.Response	"code,data,msg"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			user
+// @Router			/api/user/update/emali [post]
+func UpdateEmail(c *gin.Context) {
+	// get user info from request
+	user := model.User{
+		Username: c.PostForm("username"),
+	}
+	newEmail := c.PostForm("newemail")
+
+	err := service.UpdateEmail(user, newEmail)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code":  "400",
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"msg":  "update email success",
+	})
+}
+
+// @Title			user age update
+// @Description		使用用户名修改用户信息(username,password,email,age,summary,avatar_image)
+// @Param			username	formData	string		true	"用户名"
+// @Param			newage   	formData	string		true	"新年龄"
+// @Success			200			object		controllers.Response	"code,data,msg"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			user
+// @Router			/api/user/update/age [post]
+func UpdateAge(c *gin.Context) {
+	// get user info from request
+	user := model.User{
+		Username: c.PostForm("username"),
+	}
+	tempAge, strconvErr := strconv.ParseUint(c.PostForm("newage"), 10, 64)
+	if strconvErr != nil {
+		// 处理转换错误
+		c.JSON(http.StatusOK, gin.H{
+			"code":  "500",
+			"error": strconvErr.Error(),
+		})
+		return
+	}
+	newAge := int(tempAge)
+
+	err := service.UpdateAge(user, newAge)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code":  "400",
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"msg":  "update age success",
+	})
+}
+
+// @Title			user summary update
+// @Description		使用用户名修改用户信息(username,password,email,age,summary,avatar_image)
+// @Param			username	formData	string		true	"用户名"
+// @Param			newsummary  formData	string		true	"新简介"
+// @Success			200			object		controllers.Response	"code,data,msg"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			user
+// @Router			/api/user/update/summary [post]
+func UpdateSummary(c *gin.Context) {
+	// get user info from request
+	user := model.User{
+		Username: c.PostForm("username"),
+	}
+	newSummary := c.PostForm("newsummary")
+
+	err := service.UpdateSummary(user, newSummary)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code":  "400",
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"msg":  "update summary success",
+	})
+}
+
+// @Title			user delete
+// @Description		使用用户名删除用户信息
+// @Param			username	formData	string		true	"用户名"
+// @Success			200			object		controllers.Response	"code,data,msg"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			user
+// @Router			/api/user/delete [post]
+func DeleteUser(c *gin.Context) {
+	// get user info from request
+	user := model.User{
+		Username: c.PostForm("username"),
+	}
+
+	err := service.DeleteUser(user)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code":  "400",
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"msg":  "delete user success",
 	})
 }
