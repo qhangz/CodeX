@@ -107,6 +107,15 @@ const router = createRouter({
           meta: {
             title: 'CodeX - user'
           },
+        },
+        {
+          // publish discuss page
+          path: '/publish',
+          name: 'publish',
+          component: () => import('../views/Publish/index.vue'),
+          meta: {
+            title: 'CodeX - publish'
+          },
         }
       ]
     },
@@ -120,13 +129,13 @@ const router = createRouter({
         title: 'CodeX - 登录'
       },
     },
-    // article item page
+    // discuss item page
     {
-      path: '/article/:id',
-      name: 'article',
-      component: () => import('../views/Article/index.vue'),
+      path: '/discuss/:id',
+      name: 'discuss',
+      component: () => import('../views/Discuss/index.vue'),
       meta: {
-        title: 'CodeX - 文章详情'
+        title: 'CodeX - 说说详情'
       },
     },
 
@@ -141,6 +150,15 @@ const router = createRouter({
       meta: {
         title: 'CodeX - 关于'
       }
+    },
+    // page not found
+    {
+      path: '/404',
+      name: '404',
+      component: () => import('../views/404/index.vue'),
+      meta: {
+        title: 'CodeX - page not found'
+      },
     }
   ]
 })

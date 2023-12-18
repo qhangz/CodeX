@@ -42,6 +42,7 @@ func InitRouter() *gin.Engine {
 	{
 		discuss.POST("/publish", controller.PublishDiscuss)
 		discuss.GET("/discussinfo", controller.GetDiscussInfo)
+		discuss.GET("/discusslist", controller.GetDiscussList)
 	}
 
 	comment := router.Group("/api/comment")

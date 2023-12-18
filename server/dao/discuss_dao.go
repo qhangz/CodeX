@@ -10,17 +10,6 @@ func PublishDiscuss(newDiscuss model.Discuss) error {
 	return db.DB.Create(&newDiscuss).Error
 }
 
-// get comment of this discuss
-// func GetComment(discussID uint) (*model.Comment, error) {
-// 	discuss := model.Discuss{}
-// 	db.DB.Where("id = ?", discussID).First(&discuss)
-// 	fmt.Println(discuss)
-
-// 	db.DB.Model(&discuss).Association("Comment").Find(&discuss.Comment)
-
-// 	return &discuss.Comment[discussID], nil
-// }
-
 // get discuss info by discuss id from request
 func GetDiscussInfo(discussID uint) (*model.Discuss, error) {
 	discuss := model.Discuss{}
@@ -30,3 +19,12 @@ func GetDiscussInfo(discussID uint) (*model.Discuss, error) {
 
 	return &discuss, nil
 }
+
+// get discuss list by category
+// 返回id, title, summary, author, category, like_number, view_number, created_at，按照created_at降序排列
+func GetDiscussList(category string) ([]model.DiscussList, error) {
+	var discussList []model.DiscussList
+	db.DB.Model(&model.Discuss{}).Select("id","title", "summary", "author", "like_number", "view_number", "created_at").Where("category = ?", category).Order("created_at desc").Scan(&discussList)
+	return discussList, nil
+}
+

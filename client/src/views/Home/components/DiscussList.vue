@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import { useRouter } from 'vue-router'
-const articleList = defineProps(['articleList'])
-// console.log(articleList);
+const discussList = defineProps(['discussList'])
+// console.log(discussList);
 const router = useRouter()
-const toArticle = () => {
+const toDiscuss = () => {
     // router.push({
     //     path: '/article/',
     //     name: 'article',
@@ -13,10 +13,10 @@ const toArticle = () => {
     //     }
     // })
     const routeData = router.resolve({
-        path: '/article/',
-        name: 'article',
+        path: '/discuss/',
+        name: 'discuss',
         params: {
-            id: articleList.articleList.id
+            id: discussList.discussList.id
         }
     })
 
@@ -26,8 +26,8 @@ const toArticle = () => {
 </script>
 
 <template>
-    <div class="article-list" @click="toArticle">
-        <div class="article-item" v-for="item in articleList" :key="item.id">
+    <div class="discuss-list" @click="toDiscuss">
+        <div class="discuss-item" v-for="(item, index) in discussList" :key="index">
             <div class="title">{{ item.title }}</div>
             <div class="summary">{{ item.summary }}</div>
             <div class="footer">
@@ -37,17 +37,20 @@ const toArticle = () => {
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-chakan"></use>
                     </svg>
-                    {{ item.viewNum }}
+                    {{ item.view_num }}
                 </div>
                 <div class="likenum">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-icon"></use>
                     </svg>
-                    {{ item.likeNum }}
+                    {{ item.like_num }}
+                </div>
+                <div class="created-at">
+                    {{ item.created_at }}
                 </div>
                 <!-- 可能会存在多个标签 -->
                 <!-- <div class="label">
-                    <div v-for="(item, index) in articleLabel" :key="index">
+                    <div v-for="(item, index) in discussLabel" :key="index">
                         {{ item }}
                     </div>
                 </div> -->
@@ -57,15 +60,17 @@ const toArticle = () => {
 </template>
 
 <style lang="scss" scoped>
-.article-list {
+.discuss-list {
     width: 720px;
     background-color: var(--bg1);
     border-radius: 10px;
     margin-bottom: 20px;
+    transition: all .2s linear;
 
-    .article-item {
+    .discuss-item {
         width: 100%;
         padding: 10px 25px;
+        cursor: pointer;
 
         .title {
             width: 100%;
@@ -81,7 +86,6 @@ const toArticle = () => {
             font-size: 13px;
             line-height: 30px;
             color: var(--text-color3);
-
             overflow: hidden;
             word-break: break-all;
             text-overflow: ellipsis;
@@ -120,12 +124,27 @@ const toArticle = () => {
                 height: 30px;
                 line-height: 30px;
             }
+
+            .created-at {
+                height: 30px;
+                line-height: 30px;
+                margin-left: auto;
+            }
         }
+
+
+    }
+
+    &:hover {
+        content: "";
+        transform: translate3d(0, -3.5px, 0);
+        box-shadow: 1px 5px 8px rgb(0 0 0 / 20%);
+        border-radius: 10px;
     }
 }
 
 @media(max-width:750px) {
-    .article-list {
+    .discuss-list {
         width: 95vw;
         // height:100vh;
     }

@@ -10,15 +10,13 @@ import EventList from './components/EventList.vue'
 
 <style lang="scss" scoped>
 .events {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    min-height: calc(100vh - 188px);
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 960px;
+    flex-direction: row;
+    padding-top: 90px;
+    gap: 20px;
 }
 
 // @media (min-width: 1024px) {

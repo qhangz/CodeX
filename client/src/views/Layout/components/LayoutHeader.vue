@@ -13,7 +13,7 @@ const isLogin = ref(useUserStore().userState.isLogin)
 
 // user avatar image
 const avatarImage = reactive(localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')!).avatar_image : '')
-console.log('avatarImage',avatarImage);
+// console.log('avatarImage', avatarImage);
 
 // 自动补全输入框
 interface RestaurantItem {
@@ -124,12 +124,12 @@ onMounted(() => {
             <!-- creaor center -->
             <div class="creator-center">
                 <div class="btn">
-                    <RouterLink to="/user">创作中心</RouterLink>
+                    <RouterLink to="/publish">创作中心</RouterLink>
                 </div>
                 <div class="dropdown-content">
                     <ul class="drop-item">
                         <li>
-                            <RouterLink to="/">
+                            <RouterLink to="/404">
                                 <svg class="icon" aria-hidden="true">
                                     <use xlink:href="#icon-yuedu"></use>
                                 </svg>
@@ -139,7 +139,7 @@ onMounted(() => {
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink to="/"> <svg class="icon" aria-hidden="true">
+                            <RouterLink to="/404"> <svg class="icon" aria-hidden="true">
                                     <use xlink:href="#icon-menu-dataMining"></use>
                                 </svg>
                                 <div class="text">
@@ -148,7 +148,7 @@ onMounted(() => {
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink to="/"> <svg class="icon" aria-hidden="true">
+                            <RouterLink to="/404"> <svg class="icon" aria-hidden="true">
                                     <use xlink:href="#icon-edit"></use>
                                 </svg>
                                 <div class="text">
@@ -157,7 +157,7 @@ onMounted(() => {
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink to="/"> <svg class="icon" aria-hidden="true">
+                            <RouterLink to="/404"> <svg class="icon" aria-hidden="true">
                                     <use xlink:href="#icon-caogaoxiang"></use>
                                 </svg>
                                 <div class="text">
@@ -317,6 +317,7 @@ onMounted(() => {
             width: 100px;
             position: relative;
             display: inline-block;
+            z-index: 999;
 
             .btn {
                 display: flex;

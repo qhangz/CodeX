@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { getArticleFollow } from '@/api/article'
+import { getDiscussListByCategory } from '@/api/discuss'
 import { ref, onMounted } from 'vue'
-import ArticleList from './components/ArticleList.vue'
+import DiscussList from './components/DiscussList.vue'
 
-const followArticle = ref([])
-const getArticle = async () => {
-    const res = await getArticleFollow()
-    followArticle.value = res.data
+const followDiscuss = ref([])
+const getDiscuss = async () => {
+    const res = await getDiscussListByCategory('follow')
+    followDiscuss.value = res.data
     // console.log(articleList.value);
 }
 onMounted(() => {
-    getArticle()
+    getDiscuss()
 })
 </script>
 
 <template>
     <div class="following">
-        <div v-for="(item, index) in followArticle" :key="index">
-            <ArticleList :articleList="item"></ArticleList>
+        <div v-for="(item, index) in followDiscuss" :key="index">
+            <DiscussList :discussList="item"></DiscussList>
         </div>
     </div>
 </template>

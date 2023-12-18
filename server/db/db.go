@@ -30,6 +30,7 @@ func InitDB() *gorm.DB {
 
 	//延时关闭数据库连接
 	// defer db.Close()
+	
 	db.AutoMigrate(&model.User{},&model.Discuss{},&model.Comment{})
 
 	DB = db

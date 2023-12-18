@@ -15,6 +15,7 @@ import (
 // @Param			title   	formData	string		true	"标题"
 // @Param			summary		formData	string		true	"摘要"
 // @Param			content		formData	string		true	"内容"
+// @Param			category	formData	string		true	"标签"
 // @Success			200			object		controllers.Response	"publish success"
 // @Failure			401			object		controllers.Response	"各种错误"
 // @Failure 		500 object controllers.Response "服务器内部错误"
@@ -23,10 +24,11 @@ import (
 func PublishDiscuss(c *gin.Context) {
 	// get discuss info from request
 	newDiscuss := model.Discuss{
-		Author:  c.PostForm("author"),
-		Title:   c.PostForm("title"),
-		Summary: c.PostForm("summary"),
-		Content: c.PostForm("content"),
+		Author:   c.PostForm("author"),
+		Title:    c.PostForm("title"),
+		Summary:  c.PostForm("summary"),
+		Content:  c.PostForm("content"),
+		Category: c.PostForm("category"),
 	}
 
 	err := service.PublishDiscuss(newDiscuss)
@@ -45,7 +47,7 @@ func PublishDiscuss(c *gin.Context) {
 
 // @Title			GetDiscussInfo
 // @Description		get discuss info by discuss id from request
-// @Param			discussID  	formData	int		true	"discuss ID"
+// @Param			discussID  	query    	int		true	"discuss ID"
 // @Success			200			object		controllers.Response	"success"
 // @Failure			401			object		controllers.Response	"各种错误"
 // @Failure 		500 object controllers.Response "服务器内部错误"
@@ -76,5 +78,29 @@ func GetDiscussInfo(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code": "200",
 		"data": commentList,
+	})
+}
+
+// @Title			Get discuss list
+// @Description		get discuss list by discuss category from request
+// @Param			category  	quert   	int		true	"discuss category"
+// @Success			200			object		controllers.Response	"success"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			discuss
+// @Router			/api/discuss/GetDiscussList [get]
+func GetDiscussList(c *gin.Context) {
+	category := c.Query("category")
+	discussList, err := service.GetDiscussList(category)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":  "400",
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"data": discussList,
 	})
 }

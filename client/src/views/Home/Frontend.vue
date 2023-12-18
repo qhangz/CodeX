@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { getArticleFrontend } from '@/api/article'
+import { getDiscussListByCategory } from '@/api/discuss'
 import { ref, onMounted } from 'vue'
-import ArticleList from './components/ArticleList.vue'
+import DiscussList from './components/DiscussList.vue'
 
-const frontendArticle = ref([])
-const getArticle = async () => {
-    const res = await getArticleFrontend()
-    frontendArticle.value = res.data
+const frontendDiscuss = ref([])
+const getDiscuss = async () => {
+    const res = await getDiscussListByCategory('frontend')
+    frontendDiscuss.value = res.data
     // console.log(articleList.value);
 }
 onMounted(() => {
-    getArticle()
+    getDiscuss()
 })
 </script>
 
 <template>
     <div class="frontend">
-        <div v-for="(item,index) in frontendArticle" :key="index">
-            <ArticleList :articleList="item"></ArticleList>
+        <div v-for="(item,index) in frontendDiscuss" :key="index">
+            <DiscussList :discussList="item"></DiscussList>
         </div>
     </div>
 </template>

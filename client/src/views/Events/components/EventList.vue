@@ -4,40 +4,42 @@
 
 <template>
     <div class="event-list">
-        <a href="javascript:;" class="event-item">
-            <div class="inner">
-                <div class="banner"></div>
-                <div class="message">event</div>
+        <div class="container">
+            <a href="javascript:;" class="event-item">
+                <div class="inner">
+                    <div class="banner"></div>
+                    <div class="message">event</div>
+                </div>
+            </a>
+            <div class="event-item">
+                <div class="inner">
+                    <div class="banner"></div>
+                    <div class="message">event</div>
+                </div>
             </div>
-        </a>
-        <div class="event-item">
-            <div class="inner">
-                <div class="banner"></div>
-                <div class="message">event</div>
+            <div class="event-item">
+                <div class="inner">
+                    <div class="banner"></div>
+                    <div class="message">event</div>
+                </div>
             </div>
-        </div>
-        <div class="event-item">
-            <div class="inner">
-                <div class="banner"></div>
-                <div class="message">event</div>
+            <div class="event-item">
+                <div class="inner">
+                    <div class="banner"></div>
+                    <div class="message">event</div>
+                </div>
             </div>
-        </div>
-        <div class="event-item">
-            <div class="inner">
-                <div class="banner"></div>
-                <div class="message">event</div>
+            <div class="event-item">
+                <div class="inner">
+                    <div class="banner"></div>
+                    <div class="message">event</div>
+                </div>
             </div>
-        </div>
-        <div class="event-item">
-            <div class="inner">
-                <div class="banner"></div>
-                <div class="message">event</div>
-            </div>
-        </div>
-        <div class="event-item">
-            <div class="inner">
-                <div class="banner"></div>
-                <div class="message">event</div>
+            <div class="event-item">
+                <div class="inner">
+                    <div class="banner"></div>
+                    <div class="message">event</div>
+                </div>
             </div>
         </div>
     </div>
@@ -45,52 +47,66 @@
 
 <style lang="scss" scoped>
 .event-list {
-    width: 100%;
-    height: 100%;
-    margin-top: 35px;
     display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    margin-left: -7px;
-    margin-right: -7px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    // min-height: calc(100vh - 188px);
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 960px;
 
-    .event-item {
-        // width: 135px;
-        height: 230px;
-        cursor: pointer;
-        width: 25%;
-        padding-left: 7px;
-        padding-right: 7px;
-        box-sizing: border-box;
-        position: relative;
-        margin-bottom: 30px;
-        color: var(--text-color1);
+    .container {
+        width: 100%;
+        height: 100%;
+        margin-top: 35px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        margin-left: -7px;
+        margin-right: -7px;
 
-        .inner {
-            background-color: var(--bg1);
-            box-shadow: 1px 1px 1px rgba(0, 0, 0, .15);
-            transition: all .2s linear;
+        .event-item {
+            // width: 135px;
+            height: 230px;
+            cursor: pointer;
+            width: 25%;
+            padding-left: 7px;
+            padding-right: 7px;
+            box-sizing: border-box;
+            position: relative;
+            margin-bottom: 30px;
+            color: var(--text-color1);
 
-            .banner {
-                background-image: url("https://i.imgtg.com/2023/07/02/Okushr.jpg");
-                background-size: cover;
-                padding-top: 58.82%;
-                background-color: #ccc;
-                background-repeat: no-repeat;
-            }
-
-            .message {
-                padding: 20px 12px 15px;
+            .inner {
                 background-color: var(--bg1);
-            }
+                box-shadow: 1px 1px 1px rgba(0, 0, 0, .15);
+                transition: all .2s linear;
 
-            &:hover {
-                content: "";
-                transform: translate3d(0, -3.5px, 0);
-                box-shadow: 1px 5px 8px rgb(0 0 0 / 20%);
+                .banner {
+                    background-image: url("https://i.imgtg.com/2023/07/02/Okushr.jpg");
+                    background-size: cover;
+                    padding-top: 58.82%;
+                    background-color: #ccc;
+                    background-repeat: no-repeat;
+                }
+
+                .message {
+                    padding: 20px 12px 15px;
+                    background-color: var(--bg1);
+                }
+
+                &:hover {
+                    content: "";
+                    transform: translate3d(0, -3.5px, 0);
+                    box-shadow: 1px 5px 8px rgb(0 0 0 / 20%);
+                }
             }
         }
     }
+
+
 
 
 
