@@ -3,6 +3,7 @@
 import LayoutHeader from './components/LayoutHeader.vue'
 // import LayoutFooter from '@/components/LayoutFooter.vue'
 // import Header from '@/components/Header.vue'
+import Love from '../Other/Love.vue'
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import LayoutHeader from './components/LayoutHeader.vue'
             <LayoutHeader />
         </header>
         <RouterView />
+        <Love />
         <!-- <LayoutFooter /> -->
     </div>
 </template>

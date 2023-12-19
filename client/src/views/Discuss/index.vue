@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import Love from '../Other/Love.vue'
 const router = useRouter();
 // 获取路由跳转携带的id
 const articleId = router.currentRoute.value.params.id;
@@ -9,7 +10,7 @@ console.log(articleId);
 <template>
     <div class="article">
         this is article detials page
-
+        <Love />
     </div>
 </template>
 
@@ -21,5 +22,4 @@ console.log(articleId);
     align-items: center;
     flex-direction: column;
 }
-
 </style>
