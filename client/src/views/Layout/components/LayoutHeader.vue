@@ -205,7 +205,7 @@ onMounted(() => {
     top: 0;
     left: 0;
     transition: top 0.2s ease-in-out;
-
+    z-index:999;
     &.hidden {
         top: -64px;
     }

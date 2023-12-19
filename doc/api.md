@@ -15,14 +15,28 @@ get article by id: /api/article/info/:id
 
 3. discuss
 publish discuss: /api/discuss/publish
-get discuss list: /api/discuss/list
-get discuss by id: /api/discuss/info/:id
+get discuss list: /api/discuss/discusslist
+get discuss by id: /api/discuss/discussinfo
+get the top title of discuss list(from pre to end): /api/discuss/toplist
 ```
 # 接口返回参数说明
+```json
+success
+{
+    "code": "200",
+    "msg": "msg",
+    "data": "data"
+}
+failed
+{
+    "coda": "400 or 500",
+    "error": "error msg"
+}
+```
 1. user:
 ```json
 // register
-register sucess
+register success
 {
     "code": "400",
     "msg": "register success"
@@ -132,3 +146,58 @@ failed
     "msg": "success",
 }
 ```
+
+3. discuss
+```json
+// publish
+success
+{
+    "coda": "200",
+    "msg": "publish success"
+}
+// get discuss info
+{
+    "code": "200",
+    "data": {
+        "ID": 1,
+        "CreatedAt": "2023-12-17T16:07:16.454+08:00",
+        "UpdatedAt": "2023-12-17T16:07:16.454+08:00",
+        "DeletedAt": null,
+        "author": "HANG",
+        "title": "frontend explore",
+        "summaty": "codex explore",
+        "content": "front end learning",
+        "category": "frontend",
+        "like_num": 17,
+        "view_num": 77,
+        "Comment": []
+    }
+}
+// get discuss list
+{
+    "code": "200",
+    "data": [
+        {
+            "id": 8,
+            "author": "HelloWorld",
+            "title": "hello",
+            "summary": "world",
+            "like_num": 3,
+            "view_num": 6,
+            "created_at": "2023-12-17 16:12:12"
+        },
+    ]
+}
+// get top title of discuss
+{
+    "code": "200",
+    "data": [
+        {
+            "id": 4,
+            "title": "作业写完了吗"
+        }
+    ]
+}
+```
+
+4. comment

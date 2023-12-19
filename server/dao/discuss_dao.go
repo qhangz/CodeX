@@ -14,9 +14,7 @@ func PublishDiscuss(newDiscuss model.Discuss) error {
 func GetDiscussInfo(discussID uint) (*model.Discuss, error) {
 	discuss := model.Discuss{}
 	db.DB.Where("id = ?", discussID).First(&discuss)
-
 	db.DB.Model(&discuss).Association("Comment").Find(&discuss.Comment)
-
 	return &discuss, nil
 }
 
@@ -24,7 +22,19 @@ func GetDiscussInfo(discussID uint) (*model.Discuss, error) {
 // 返回id, title, summary, author, category, like_number, view_number, created_at，按照created_at降序排列
 func GetDiscussList(category string) ([]model.DiscussList, error) {
 	var discussList []model.DiscussList
-	db.DB.Model(&model.Discuss{}).Select("id","title", "summary", "author", "like_number", "view_number", "created_at").Where("category = ?", category).Order("created_at desc").Scan(&discussList)
+	db.DB.Model(&model.Discuss{}).
+		Select("id", "title", "summary", "author", "like_number", "view_number", "created_at").
+		Where("category = ?", category).Order("created_at desc").
+		Scan(&discussList)
 	return discussList, nil
 }
 
+// get the top title of discuss list from pre to end number
+func GetDiscussTop(pre int, end int) ([]model.TopDiscuss, error) {
+	var topDiscussList []model.TopDiscuss
+	db.DB.Model(&model.Discuss{}).
+		Select("id", "title").
+		Order("view_number desc").Limit(end - pre + 1).Offset(pre - 1).
+		Scan(&topDiscussList)
+	return topDiscussList, nil
+}

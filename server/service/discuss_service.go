@@ -5,6 +5,7 @@ import (
 
 	"github.com/codex/dao"
 	"github.com/codex/model"
+	// "golang.org/x/text/number"
 )
 
 // publish discuss
@@ -19,7 +20,7 @@ func GetDiscussInfo(discussID uint) (*model.Discuss, error) {
 
 // get discuss list by category
 func GetDiscussList(category string) ([]model.DiscussList, error) {
-	var discussList []model.DiscussList
+	// var discussList []model.DiscussList
 	discussList, err := dao.GetDiscussList(category)
 	if err != nil {
 		return nil, err
@@ -31,4 +32,14 @@ func GetDiscussList(category string) ([]model.DiscussList, error) {
 	}
 
 	return discussList, nil
+}
+
+// get the top title of discuss list
+func GetDiscussTop(pre int, end int) ([]model.TopDiscuss, error) {
+	// var topDiscussList []model.TopDiscuss
+	topDiscussList, err := dao.GetDiscussTop(pre, end)
+	if err != nil {
+		return nil, err
+	}
+	return topDiscussList, nil
 }

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import GreetingAside from './GreetingAside.vue'
+import TopDiscussList from './TopDiscussList.vue'
 </script>
 <template>
     <div class="home-aside">
         <GreetingAside />
-        
+        <TopDiscussList />
     </div>
 </template>
 
@@ -14,6 +15,7 @@ import GreetingAside from './GreetingAside.vue'
     height: 100%;
     // background-color: var(--primary-300);
     // padding: 15px 20px;
+    // position:fixed;
 }
 
 @media(max-width:1200px) {

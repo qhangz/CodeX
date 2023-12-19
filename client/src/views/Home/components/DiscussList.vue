@@ -66,7 +66,6 @@ const toDiscuss = () => {
     border-radius: 10px;
     margin-bottom: 20px;
     transition: all .2s linear;
-
     .discuss-item {
         width: 100%;
         padding: 10px 25px;

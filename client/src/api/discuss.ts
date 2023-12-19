@@ -18,21 +18,29 @@ export const publishDiscuss = (author: string, title: string, summary: string, c
 // 根据query参数category获取讨论列表
 export const getDiscussListByCategory = (category: string) => {
     return httpInstance({
-        url: `/api/discuss/discusslist?category=${category}`,
+        url: `/api/discuss/list?category=${category}`,
         method: 'get',
     })
 }
 // 根据query参数category获取讨论列表
 export const getDiscussListByCategoryAndPage = (category: string, page: number) => {
     return httpInstance({
-        url: `/api/discuss/discusslist?category=${category}&page=${page}`,
+        url: `/api/discuss/list?category=${category}&page=${page}`,
         method: 'get',
     })
 }
 // 根据query参数id获取讨论详情
 export const getDiscussDetailById = (id: string) => {
     return httpInstance({
-        url: `/api/discuss/discussdetail?id=${id}`,
+        url: `/api/discuss/info?id=${id}`,
+        method: 'get',
+    })
+}
+
+// get the top topic of discuss list (from pre to end )
+export const getDiscussTop = (pre: int, end: int) => {
+    return httpInstance({
+        url: `/api/discuss/toplist?pre=${pre}&end=${end}`,
         method: 'get',
     })
 }

@@ -22,6 +22,10 @@ import BackTop from '@/components/BackTop.vue'
     flex-direction: row;
     padding-top: 20px;
     gap: 20px;
-
+    height: 100%;
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
 }
 </style>

@@ -20,7 +20,7 @@ import (
 // @Failure			401			object		controllers.Response	"各种错误"
 // @Failure 		500 object controllers.Response "服务器内部错误"
 // @Tags			discuss
-// @Router			/api/discuss/poublish [post]
+// @Router			/api/discuss/publish [post]
 func PublishDiscuss(c *gin.Context) {
 	// get discuss info from request
 	newDiscuss := model.Discuss{
@@ -52,7 +52,7 @@ func PublishDiscuss(c *gin.Context) {
 // @Failure			401			object		controllers.Response	"各种错误"
 // @Failure 		500 object controllers.Response "服务器内部错误"
 // @Tags			discuss
-// @Router			/api/discuss/GetDiscussInfo [get]
+// @Router			/api/discuss/info [get]
 func GetDiscussInfo(c *gin.Context) {
 	// 将discussID转换为无符号整数类型
 	discussID, strconEerr := strconv.ParseUint(c.Query("discussID"), 10, 64)
@@ -88,7 +88,7 @@ func GetDiscussInfo(c *gin.Context) {
 // @Failure			401			object		controllers.Response	"各种错误"
 // @Failure 		500 object controllers.Response "服务器内部错误"
 // @Tags			discuss
-// @Router			/api/discuss/GetDiscussList [get]
+// @Router			/api/discuss/list [get]
 func GetDiscussList(c *gin.Context) {
 	category := c.Query("category")
 	discussList, err := service.GetDiscussList(category)
@@ -102,5 +102,46 @@ func GetDiscussList(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code": "200",
 		"data": discussList,
+	})
+}
+
+// @Title			Get the top topic(title) of discuss list
+// @Description		get discuss list by discuss category from request
+// @Param			category  	quert   	int		true	"form pre to end"
+// @Success			200			object		controllers.Response	"success"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			discuss
+// @Router			/api/discuss/toplist [get]
+func GetDiscussTop(c *gin.Context) {
+	preStr := c.Query("pre")
+	endStr := c.Query("end")
+	pre, preErr := strconv.Atoi(preStr)
+	if preErr != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":  "400",
+			"error": preErr.Error(),
+		})
+		return
+	}
+	end, endErr := strconv.Atoi(endStr)
+	if endErr != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":  "400",
+			"error": endErr.Error(),
+		})
+		return
+	}
+	topDiscussList, err := service.GetDiscussTop(pre, end)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":  "400",
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"data": topDiscussList,
 	})
 }

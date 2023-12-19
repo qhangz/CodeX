@@ -56,6 +56,14 @@ type DiscussList struct {
 	CreatedAt   string `gorm:"type:varchar(20);not null" json:"created_at"`
 }
 
+// return the top discuss list
+type TopDiscuss struct {
+	ID    uint   `gorm:"primary_key" json:"id"`
+	// Rank  int    `gorm:"type:int" json:"rank"`
+	Title string `gorm:"type:varchar(20);not null" json:"title"`
+	// View_Number int64  `gorm:"type:int" json:"view_num"`
+}
+
 // commment model
 type Comment struct {
 	gorm.Model
