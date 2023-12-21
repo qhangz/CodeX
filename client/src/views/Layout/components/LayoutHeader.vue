@@ -139,7 +139,8 @@ onMounted(() => {
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink to="/404"> <svg class="icon" aria-hidden="true">
+                            <RouterLink to="/404">
+                                <svg class="icon" aria-hidden="true">
                                     <use xlink:href="#icon-menu-dataMining"></use>
                                 </svg>
                                 <div class="text">
@@ -148,7 +149,8 @@ onMounted(() => {
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink to="/404"> <svg class="icon" aria-hidden="true">
+                            <RouterLink to="/404">
+                                <svg class="icon" aria-hidden="true">
                                     <use xlink:href="#icon-edit"></use>
                                 </svg>
                                 <div class="text">
@@ -157,7 +159,8 @@ onMounted(() => {
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink to="/404"> <svg class="icon" aria-hidden="true">
+                            <RouterLink to="/404">
+                                <svg class="icon" aria-hidden="true">
                                     <use xlink:href="#icon-caogaoxiang"></use>
                                 </svg>
                                 <div class="text">
@@ -205,7 +208,8 @@ onMounted(() => {
     top: 0;
     left: 0;
     transition: top 0.2s ease-in-out;
-    z-index:999;
+    z-index: 999;
+
     &.hidden {
         top: -64px;
     }

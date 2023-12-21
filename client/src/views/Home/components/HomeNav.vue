@@ -36,7 +36,7 @@
 <style lang="scss" scoped>
 .home-nav {
     width: 150px;
-    height: 100%;
+    // height: 100%;
 
     .home-nav-list {
         background: var(--bg1);

@@ -10,7 +10,6 @@ import router from './router'
 import '@/styles/base.scss'
 
 
-
 const app = createApp(App)
 
 app.use(createPinia())

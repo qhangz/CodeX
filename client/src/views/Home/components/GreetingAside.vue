@@ -9,7 +9,7 @@ const setGreeting = () => {
     } else if (currentTime >= 12 && currentTime < 18) {
         greeting = '下午好！';
     } else {
-        greeting = '晚上好！';
+        greeting = '晚上好!';
     }
 }
 setGreeting()
@@ -31,14 +31,26 @@ setGreeting()
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    .greeting-word{
+
+    .greeting-word {
         font-size: 20px;
         font-weight: bold;
         color: var(--text-color1);
+        transition: all .2s linear;
+
+        &:hover {
+            padding: 0px 10px;
+            transform: translate3d(0, -3.5px, 0);
+            box-shadow: 1px 5px 8px rgb(0 0 0 / 20%);
+            border-radius: 10px;
+            background-color: var(--bg5);
+            color: var(--primary-100);
+        }
     }
-    .other{
-        font-size:14px;
-        color:var(--text-color1)
+
+    .other {
+        font-size: 14px;
+        color: var(--text-color1)
     }
 }
 </style>

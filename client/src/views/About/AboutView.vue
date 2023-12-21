@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import { useAdd } from '@/hooks/useAdd';
 const a = useAdd()

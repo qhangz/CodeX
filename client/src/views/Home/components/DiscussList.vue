@@ -2,7 +2,7 @@
 import { defineProps } from 'vue';
 import { useRouter } from 'vue-router'
 const discussList = defineProps(['discussList'])
-// console.log(discussList);
+// console.log('discusslist',discussList);
 const router = useRouter()
 const toDiscuss = () => {
     // router.push({
@@ -16,7 +16,12 @@ const toDiscuss = () => {
         path: '/discuss/',
         name: 'discuss',
         params: {
-            id: discussList.discussList.id
+            id: discussList.discussList.id,
+            // author: discussList.discussList.author
+        },
+        query: {
+            // id: articleList.articleList.id
+            author: discussList.discussList.author
         }
     })
 
@@ -66,6 +71,7 @@ const toDiscuss = () => {
     border-radius: 10px;
     margin-bottom: 20px;
     transition: all .2s linear;
+
     .discuss-item {
         width: 100%;
         padding: 10px 25px;
@@ -135,7 +141,6 @@ const toDiscuss = () => {
     }
 
     &:hover {
-        content: "";
         transform: translate3d(0, -3.5px, 0);
         box-shadow: 1px 5px 8px rgb(0 0 0 / 20%);
         border-radius: 10px;

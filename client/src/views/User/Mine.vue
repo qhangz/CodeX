@@ -19,7 +19,6 @@ interface MyUser {
     updateTime: Date;
     deleteTime: Date;
     username: any;
-    password: any;
     email: string;
     age: Int16Array;
     summary: string;

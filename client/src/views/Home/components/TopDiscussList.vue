@@ -9,15 +9,15 @@ let listNum = ref([1, 2, 3, 4, 5])
 const getDiscussList = async (index: number) => {
     const res = await getDiscussTop(index, index + 4)
     discussList.value = res.data
-    console.log("res.data", res.data);
-    console.log("discusslist.value", discussList.value);
+    // console.log("res.data", res.data);
+    // console.log("discusslist.value", discussList.value);
 }
 
 // get discuss index from discussStore
 const discussIndex = useDiscussListStore()
 const changeList = () => {
-    console.log("change");
-    console.log(discussIndex.index);
+    // console.log("change");
+    // console.log(discussIndex.index);
     getDiscussList(discussIndex.index)
     listNum.value = listNum.value.map(item => item + 5)
     discussIndex.increment()

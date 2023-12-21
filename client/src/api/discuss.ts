@@ -30,15 +30,15 @@ export const getDiscussListByCategoryAndPage = (category: string, page: number) 
     })
 }
 // 根据query参数id获取讨论详情
-export const getDiscussDetailById = (id: string) => {
+export const getDiscussDetailById = (id: any) => {
     return httpInstance({
-        url: `/api/discuss/info?id=${id}`,
+        url: `/api/discuss/info?discussID=${id}`,
         method: 'get',
     })
 }
 
 // get the top topic of discuss list (from pre to end )
-export const getDiscussTop = (pre: int, end: int) => {
+export const getDiscussTop = (pre: number, end: number) => {
     return httpInstance({
         url: `/api/discuss/toplist?pre=${pre}&end=${end}`,
         method: 'get',

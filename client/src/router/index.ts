@@ -116,7 +116,16 @@ const router = createRouter({
           meta: {
             title: 'CodeX - publish'
           },
-        }
+        },
+        // discuss item page
+        {
+          path: '/discuss/:id',
+          name: 'discuss',
+          component: () => import('../views/Discuss/index.vue'),
+          meta: {
+            title: 'CodeX - 说说详情'
+          },
+        },
       ]
     },
 
@@ -129,16 +138,6 @@ const router = createRouter({
         title: 'CodeX - 登录'
       },
     },
-    // discuss item page
-    {
-      path: '/discuss/:id',
-      name: 'discuss',
-      component: () => import('../views/Discuss/index.vue'),
-      meta: {
-        title: 'CodeX - 说说详情'
-      },
-    },
-
     // about page
     {
       path: '/about',

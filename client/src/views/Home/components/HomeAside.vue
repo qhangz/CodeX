@@ -12,7 +12,7 @@ import TopDiscussList from './TopDiscussList.vue'
 <style lang="scss" scoped>
 .home-aside {
     width: 260px;
-    height: 100%;
+    // height: 100%;
     // background-color: var(--primary-300);
     // padding: 15px 20px;
     // position:fixed;
