@@ -5,14 +5,29 @@ import (
 	"github.com/codex/model"
 )
 
-// get user by username
+// get all user infomation by username
 func GetUserByUsername(username string) (*model.User, error) {
-	var user model.User
+	// var user model.User
+	user := model.User{}
 	if err := db.DB.Where("username = ?", username).First(&user).Error; err != nil {
 		return nil, err
 	}
+	db.DB.Model(&user).Association("UserProfile").Find(&user.UserProfile)
 	return &user, nil
 }
+
+// get userinfo by username
+// func GetUserInfoByUsername(username string) (*model.UserInfo, error) {
+// 	var userInfo model.UserInfo
+// 	if err := db.DB.Model(&model.User{}).
+// 		Select("id", "created_at", "username", "email", "age", "summary", "avatar_image").
+// 		Where("username = ?", username).
+// 		Scan(&userInfo).Error; err != nil {
+// 		return nil, err
+// 	}
+// 	// db.DB.Model(&userInfo).Association("UserProfile").Find(&userInfo.UserProfile)
+// 	return &userInfo, nil
+// }
 
 // get user by email
 func GetUserByEmail(email string) (*model.User, error) {

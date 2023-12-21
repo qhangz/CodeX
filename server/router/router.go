@@ -29,7 +29,7 @@ func InitRouter() *gin.Engine {
 		user.POST("/register", controller.Register)
 		user.POST("/login", controller.Login)
 		user.GET("/list", controller.GetUserList)
-		user.GET("/info/:username", controller.GetUserByUsername)
+		user.GET("/info/:username", controller.GetUserInfoByUsername)
 		user.POST("/update/username", controller.UpdateUsername)
 		user.POST("/update/password", controller.UpdatePassword)
 		user.POST("/update/email", controller.UpdateEmail)

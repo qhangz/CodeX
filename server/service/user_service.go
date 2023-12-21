@@ -11,14 +11,11 @@ import (
 	"time"
 
 	"golang.org/x/crypto/bcrypt"
+	// "gorm.io/gorm"
 
 	"github.com/codex/dao"
 	"github.com/codex/model"
 )
-
-func GetUserByUsername(username string) (*model.User, error) {
-	return dao.GetUserByUsername(username)
-}
 
 var ErrorRegisterInfo = errors.New("invalid registration information")
 var ErrorUserExist = errors.New("user already exists")
@@ -37,6 +34,33 @@ var ErrorUserNotExit = errors.New("user not exit")
 var ErrorMsg = errors.New("error message")
 var ErrorAgeWrong = errors.New("age is wrong")
 var ErrorSummaryWrong = errors.New("summary is wrong")
+
+// convert *model.User boject to *model.UserInfo
+func ConvertUserToUserInfo(user *model.User) *model.UserInfo {
+	return &model.UserInfo{
+		Model:        user.Model,
+		Username:     user.Username,
+		Email:        user.Email,
+		Age:          user.Age,
+		Summary:      user.Summary,
+		Avatar_image: user.Avatar_image,
+		UserProfile:  user.UserProfile,
+	}
+}
+
+// rerurn all user info by username
+func GetUserByUsername(username string) (*model.User, error) {
+	return dao.GetUserByUsername(username)
+}
+
+// return userinfo by username
+func GetUserInfoByUsername(username string) (*model.UserInfo, error) {
+	user, err := dao.GetUserByUsername(username)
+	if err != nil {
+		return nil, err
+	}
+	return ConvertUserToUserInfo(user), nil
+}
 
 // is email valid
 func validateEmail(email string) bool {
@@ -103,15 +127,15 @@ func Register(newUser model.User) error {
 }
 
 // user login (return userInfo,token,error)
-func Login(user model.User) (*model.User, string, error) {
+func Login(user model.User) (*model.UserInfo, string, error) {
 	// 数据验证(username和password)
 	if len(user.Username) == 0 || len(user.Password) < 6 {
 		return nil, "", ErrorLoginInfo
 	}
 
 	// 检查用户名存在
-	thisUser, err := dao.GetUserByUsername(user.Username)
-	if err != nil {
+	thisUser, userErr := dao.GetUserByUsername(user.Username)
+	if userErr != nil {
 		return nil, "", ErrorUserNotExit
 	}
 	if thisUser == nil {
@@ -119,15 +143,18 @@ func Login(user model.User) (*model.User, string, error) {
 	}
 
 	// 检查密码是否正确
-	err = bcrypt.CompareHashAndPassword([]byte(thisUser.Password), []byte(user.Password))
-	if err != nil {
+	pswErr := bcrypt.CompareHashAndPassword([]byte(thisUser.Password), []byte(user.Password))
+	if pswErr != nil {
 		return nil, "", ErrorPasswordWrong
 	}
 
 	// token
 	token := strconv.FormatUint(uint64(thisUser.ID), 10)
 
-	return thisUser, token, nil
+	// return userInfo (does note include password)
+	userInfo := ConvertUserToUserInfo(thisUser)
+
+	return userInfo, token, nil
 }
 
 // user list	返回用户信息列表

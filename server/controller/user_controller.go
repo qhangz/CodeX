@@ -16,9 +16,9 @@ import (
 // @Failure 		500 object controllers.Response "服务器内部错误"
 // @Tags			user
 // @Router			/api/user/info/:username [get]
-func GetUserByUsername(c *gin.Context) {
+func GetUserInfoByUsername(c *gin.Context) {
 	username := c.Param("username")
-	user, err := service.GetUserByUsername(username)
+	user, err := service.GetUserInfoByUsername(username)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"code":  "400",

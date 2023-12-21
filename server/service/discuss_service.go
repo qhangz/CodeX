@@ -8,6 +8,14 @@ import (
 	// "golang.org/x/text/number"
 )
 
+// Convert the time format of CreatedAt to 2021-01-01 00:00:00
+func ConvertCreatedAt(discussList []model.DiscussList) []model.DiscussList {
+	for i := range discussList {
+		discussList[i].CreatedAt = discussList[i].CreatedAt[:10] + " " + discussList[i].CreatedAt[11:19]
+	}
+	return discussList
+}
+
 // publish discuss
 func PublishDiscuss(newDiscuss model.Discuss) error {
 	return dao.PublishDiscuss(newDiscuss)
@@ -26,10 +34,8 @@ func GetDiscussList(category string) ([]model.DiscussList, error) {
 		return nil, err
 	}
 
-	// 2023-12-17T16:08:43.42+08:00去掉后面的.42+08:00和T
-	for i := range discussList {
-		discussList[i].CreatedAt = discussList[i].CreatedAt[:10] + " " + discussList[i].CreatedAt[11:19]
-	}
+	// convert time format
+	discussList = ConvertCreatedAt(discussList)
 
 	return discussList, nil
 }

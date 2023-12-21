@@ -1,12 +1,12 @@
 package db
 
 import (
-    "fmt"
+	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 
-    "github.com/codex/config"
-    "github.com/codex/model"
+	"github.com/codex/config"
+	"github.com/codex/model"
 )
 
 var DB *gorm.DB
@@ -30,8 +30,8 @@ func InitDB() *gorm.DB {
 
 	//延时关闭数据库连接
 	// defer db.Close()
-	
-	db.AutoMigrate(&model.User{},&model.Discuss{},&model.Comment{})
+
+	db.AutoMigrate(&model.User{}, &model.Discuss{}, &model.Comment{}, &model.UserProfile{})
 
 	DB = db
 	return db

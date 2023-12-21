@@ -15,9 +15,12 @@ get article by id: /api/article/info/:id
 
 3. discuss
 publish discuss: /api/discuss/publish
-get discuss list: /api/discuss/discusslist
-get discuss by id: /api/discuss/discussinfo
+get discuss list: /api/discuss/list
+get discuss by id: /api/discuss/info
 get the top title of discuss list(from pre to end): /api/discuss/toplist
+
+4. comment
+publish comment: /api/comment/publish
 ```
 # 接口返回参数说明
 ```json
