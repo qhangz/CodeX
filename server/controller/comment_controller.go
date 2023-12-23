@@ -32,7 +32,7 @@ func PublishComment(c *gin.Context) {
 		Content:   c.PostForm("content"),
 		// DiscussID: c.PostForm("discussID")
 	}
-	// 将字符串类型的评论ID转换为无符号整数类型
+	// 将评论ID转换为无符号整数类型
 	discussID, err := strconv.ParseUint(c.PostForm("discussid"), 10, 64)
 	if err != nil {
 		// 处理转换错误

@@ -18,7 +18,7 @@ import (
 )
 
 var ErrorRegisterInfo = errors.New("invalid registration information")
-var ErrorUserExist = errors.New("user already exists")
+var ErrorUserExit = errors.New("user already exit")
 var ErrorEmailExist = errors.New("email already exists")
 var ErrorRegisterFailed = errors.New("registration failed")
 var ErrorRegisterSuccess = errors.New("registration success")
@@ -98,7 +98,7 @@ func Register(newUser model.User) error {
 
 	// 检查用户名是否已经存在
 	if dao.IsUsernameExist(newUser.Username) {
-		return ErrorUserExist
+		return ErrorUserExit
 	}
 
 	// 用户密码加密
@@ -181,7 +181,7 @@ func UpdateUsername(user model.User, newUsername string) error {
 	}
 	// 检查新用户名是否已经存在
 	if dao.IsUsernameExist(newUsername) {
-		return ErrorUserExist
+		return ErrorUserExit
 	}
 	return dao.UpdateUsername(thisUser, newUsername)
 }
@@ -280,4 +280,9 @@ func DeleteUser(user model.User) error {
 		return ErrorUserNotExit
 	}
 	return dao.DeleteUser(thisUser)
+}
+
+// get user avatar according to username
+func GetUserAvatar(username string) (string, error) {
+	return dao.GetUserAvatar(username)
 }

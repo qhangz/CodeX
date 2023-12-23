@@ -173,7 +173,19 @@ success
         "category": "frontend",
         "like_num": 17,
         "view_num": 77,
-        "Comment": []
+        "Comment": [
+            {
+                "ID": 1,
+                "CreatedAt": "2023-12-20T19:04:31.296+08:00",
+                "UpdatedAt": "2023-12-20T19:04:31.296+08:00",
+                "DeletedAt": null,
+                "DiscussID": 20,
+                "author": "YOLO",
+                "content": "快了",
+                "like_num": 0,
+                "view_num": 0
+            },
+        ]
     }
 }
 // get discuss list
@@ -204,3 +216,11 @@ success
 ```
 
 4. comment
+```json
+// publish
+success
+{
+    "coda": "200",
+    "msg": "publish success"
+}
+```

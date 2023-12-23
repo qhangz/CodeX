@@ -110,3 +110,13 @@ func UpdateSummary(user *model.User, newSummary string) error {
 func DeleteUser(user *model.User) error {
 	return db.DB.Delete(&user).Error
 }
+
+// get user's avatar image accoring to username
+func GetUserAvatar(username string) (string, error) {
+	var avatar string
+	err := db.DB.Model(&model.User{}).Select("avatar_image").Where("username=?", username).Scan(&avatar).Error
+	if err != nil {
+		return "", err
+	}
+	return avatar, nil
+}
