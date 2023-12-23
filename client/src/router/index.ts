@@ -96,7 +96,8 @@ const router = createRouter({
           name: 'user',
           component: () => import('../views/User/Mine.vue'),
           meta: {
-            title: 'CodeX - user'
+            title: 'CodeX - user',
+            isAuth: true
           },
         },
         {

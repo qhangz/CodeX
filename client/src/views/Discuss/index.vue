@@ -91,7 +91,7 @@ onMounted(() => {
     <div class="article">
         <div class="content">
             <DiscussContent :discusses="discussInfo"></DiscussContent>
-            <CommentContent :comments="commentInfo"></CommentContent>
+            <CommentContent :comments="commentInfo" :discussID="discussInfo.ID"></CommentContent>
         </div>
         <div class="aside">
             <UserForm :author="author"></UserForm>

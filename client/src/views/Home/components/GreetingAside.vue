@@ -16,7 +16,9 @@ setGreeting()
 </script>
 <template>
     <div class="greeting-aside">
-        <div class="greeting-word">{{ greeting }}</div>
+        <div class="greeting-word">
+            {{ greeting }}
+        </div>
         <div class="other">点亮在社区的每一天</div>
     </div>
 </template>
@@ -40,9 +42,9 @@ setGreeting()
 
         &:hover {
             padding: 0px 10px;
-            transform: translate3d(0, -3.5px, 0);
-            box-shadow: 1px 5px 8px rgb(0 0 0 / 20%);
-            border-radius: 10px;
+            // transform: translate3d(0, -3.5px, 0);
+            // box-shadow: 1px 5px 8px rgb(0 0 0 / 20%);
+            border-radius: 5px;
             background-color: var(--bg5);
             color: var(--primary-100);
         }

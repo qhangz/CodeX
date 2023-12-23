@@ -35,7 +35,7 @@ onMounted(() => {
                 <use xlink:href="#icon-yuedu"></use>
             </svg>
             <div class="title">
-                文章榜
+                话题榜
             </div>
             <div class="change" @click="changeList">
                 <svg class="change-icon" aria-hidden="true">
@@ -102,6 +102,7 @@ onMounted(() => {
             display: flex;
             border-radius: 10px;
             padding: 0 5px;
+            cursor: pointer;
 
             .change-icon {
                 width: 18px;

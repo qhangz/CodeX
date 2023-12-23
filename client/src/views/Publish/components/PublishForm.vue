@@ -32,8 +32,7 @@ const userNotLogin = () => {
 }
 const onSubmit = () => {
     if (form.title != '' && form.summary != '' && form.category != '' && form.content != '') {
-        if (useUserStore().userState.isLogin) {
-
+        if (localStorage.getItem('isLogin')) {
             let author = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')!).username : ''
             const res = publishDiscuss(author, form.title, form.summary, form.content, form.category).then(res => {
                 if (res.code == 200) {
