@@ -1,11 +1,10 @@
 <script setup lang="ts">
-
+import GameList from './components/GameList.vue'
 </script>
 
 <template>
     <div class="games">
-        this is games page
-
+        <GameList/>
     </div>
 </template>
 
@@ -15,7 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 @media (min-width: 1024px) {

@@ -1,0 +1,60 @@
+{
+    "code": 200,
+    "msg": "success",
+    "data": [
+        {
+            "route": "",
+            "url": "https://www.zaozao.run/conf/c76",
+            "name": "AI Talks：智能化开发",
+            "time": "2023-12-01 周五",
+            "place": "北京",
+            "status": "已结束",
+            "banner_image": "https://ooo.0x0.ooo/2023/07/02/OkuVtM.jpg"
+        },
+        {
+            "route": "",
+            "url": "https://www.bagevent.com/event/8758229?bag_track=article1219",
+            "name": "CodeX年度技术演讲",
+            "time": "2024-01-17 周三",
+            "place": "线上",
+            "status": "未开始",
+            "banner_image": "https://i.imgtg.com/2023/07/02/Okushr.jpg"
+        },
+        {
+            "route": "",
+            "url": "",
+            "name": "自动驾驶技术体验",
+            "time": "2024-02-07 周三",
+            "place": "杭州",
+            "status": "未开始",
+            "banner_image": "https://ooo.0x0.ooo/2023/07/02/Oku0Gq.jpg"
+        },
+        {
+            "route": "",
+            "url": "",
+            "name": "CodeX内容共创计划",
+            "time": "2024-3-13 周三",
+            "place": "线上",
+            "status": "未开始",
+            "banner_image": "https://ooo.0x0.ooo/2023/06/13/OBPFwI.jpg"
+        },
+        {
+            "route": "",
+            "url": "",
+            "name": "CodeX AI Class",
+            "time": "2024-4-17 周三",
+            "place": "线上",
+            "status": "未开始",
+            "banner_image": "https://ooo.0x0.ooo/2023/07/02/OkuSev.jpg"
+        },
+        {
+            "route": "",
+            "url": "",
+            "name": "CodeX AIGC",
+            "time": "2024-5-01 周三",
+            "place": "线上",
+            "status": "未开始",
+            "banner_image": "https://ooo.0x0.ooo/2023/07/02/OkucIc.jpg"
+        }
+    ]
+}

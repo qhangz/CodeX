@@ -15,7 +15,7 @@ import EventList from './components/EventList.vue'
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    padding-top: 90px;
+    // padding-top: 90px;
     gap: 20px;
 }
 

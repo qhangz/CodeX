@@ -12,7 +12,7 @@ interface User {
     email: string;
     age: Int16Array;
     summary: string;
-    avatar_iamge: string;
+    avatar_image: string;
 }
 let userList = ref<User[]>([])
 const getUserInfo = async () => {
@@ -35,7 +35,7 @@ onMounted(() => {
             <div class="user-item" v-for="(item, index) in userList" :key="index">
                 <div class="inner">
                     <div class="top">
-                        <img class="avatar-image" :src="item.avatar_image" />
+                        <img :src="item.avatar_image" alt="" class="avatar-image" />
                         <div class="uid">UID&nbsp;:&nbsp;{{ item.ID }}</div>
                     </div>
                     <div class="username">username&nbsp;:&nbsp;{{ item.username }}</div>
@@ -49,15 +49,15 @@ onMounted(() => {
 </template>
 <style scoped lang="scss">
 .user-list {
-    display: flex;
+    // display: flex;
     // justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: calc(100vh - 188px);
-    position: relative;
+    // align-items: center;
+    // flex-direction: column;
+    // min-height: calc(100vh - 188px);
+    // position: relative;
     margin: 0 auto;
-    width: 100%;
-    max-width: 1180px;
+    // width: 100%;
+    max-width: 1080px;
 
     .contain {
         width: 100%;
@@ -80,7 +80,6 @@ onMounted(() => {
 
         .user-item {
             height: 230px;
-            cursor: pointer;
             width: 25%;
             padding-left: 10px;
             padding-right: 10px;
@@ -90,6 +89,7 @@ onMounted(() => {
             color: var(--text-color1);
 
             .inner {
+                cursor: pointer;
                 background-color: var(--bg1);
                 box-shadow: 1px 1px 1px rgba(0, 0, 0, .15);
                 transition: all .2s linear;

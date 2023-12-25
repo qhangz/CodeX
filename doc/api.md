@@ -21,6 +21,12 @@ get the top title of discuss list(from pre to end): /api/discuss/toplist
 
 4. comment
 publish comment: /api/comment/publish
+
+5. games
+games list: /api/game/list
+
+6. event
+evnet list: /api/event/list
 ```
 # 接口返回参数说明
 ```json
@@ -222,5 +228,40 @@ success
 {
     "coda": "200",
     "msg": "publish success"
+}
+```
+5. games
+```json
+// game list
+success
+{
+    "coda": "200",
+    "msg": "success",
+    "data":{
+        [
+            "route": "/games/santaclaus",
+            "banner_image": "",
+            "game_name": ""
+        ]
+    }
+}
+```
+6. event
+```json
+// game list
+success
+{
+    "coda": "200",
+    "msg": "success",
+    "data":
+    {
+        "route": "",
+        "url": "https://www.bagevent.com/event/8758229?bag_track=article1219",
+        "name": "CodeX年度技术演讲",
+        "time": "2024-01-17 周三",
+        "place": "线上",
+        "status": "未开始",
+        "banner_image": "https://i.imgtg.com/2023/07/02/Okushr.jpg"
+    },
 }
 ```

@@ -109,6 +109,12 @@ const timeFormat = (time: string) => {
         .like-num {
             display: flex;
             gap: 5px;
+            cursor: pointer;
+            transition: color 0.2s ease-in-out;
+
+            &:hover {
+                color: var(--primary-100);
+            }
         }
 
         .category {

@@ -1,0 +1,51 @@
+{
+    "code": 200,
+    "msg": "success",
+    "data": [
+        {
+            "route": "/games/santaclaus",
+            "banner_image": "https://pic.imgdb.cn/item/65894586c458853aefcfaa82.jpg",
+            "game_name": "圣诞老人过桥"
+        },
+        {
+            "route": "",
+            "banner_image": "https://pic.imgdb.cn/item/65894586c458853aefcfab01.jpg",
+            "game_name": "未完待续..."
+        },
+        {
+            "route": "",
+            "banner_image": "https://pic.imgdb.cn/item/65894586c458853aefcfaa56.jpg",
+            "game_name": "To Be Continued..."
+        },
+        {
+            "route": "",
+            "banner_image": "https://pic.imgdb.cn/item/65896cbfc458853aef447f21.jpg",
+            "game_name": "未完待续..."
+        },
+        {
+            "route": "",
+            "banner_image": "https://pic.imgdb.cn/item/65896cbfc458853aef447fba.jpg",
+            "game_name": "To Be Continued..."
+        },
+        {
+            "route": "",
+            "banner_image": "https://pic.imgdb.cn/item/65896cbec458853aef447d96.jpg",
+            "game_name": "未完待续..."
+        },
+        {
+            "route": "",
+            "banner_image": "https://pic.imgdb.cn/item/65896cbec458853aef447e01.jpg",
+            "game_name": "To Be Continued..."
+        },
+        {
+            "route": "",
+            "banner_image": "https://pic.imgdb.cn/item/65896cbfc458853aef447e78.jpg",
+            "game_name": "未完待续..."
+        },
+        {
+            "route": "",
+            "banner_image": "https://pic.imgdb.cn/item/65896cf8c458853aef453dbd.jpg",
+            "game_name": "To Be Continued..."
+        }
+    ]
+}

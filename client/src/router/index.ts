@@ -110,6 +110,15 @@ const router = createRouter({
           },
         },
         {
+          // app page
+          path: '/app',
+          name: 'app',
+          component: () => import('../views/About/App.vue'),
+          meta: {
+            title: 'CodeX - App'
+          },
+        },
+        {
           // publish discuss page
           path: '/publish',
           name: 'publish',
@@ -130,6 +139,15 @@ const router = createRouter({
       ]
     },
 
+    // games page
+    {
+      path: '/games/santaclaus',
+      name: 'santaclaus',
+      component: () => import('../views/Games/SantaClaus/index.vue'),
+      meta: {
+        title: 'CodeX - Santa Claus'
+      },
+    },
     // login and register page
     {
       path: '/login',

@@ -51,5 +51,15 @@ func InitRouter() *gin.Engine {
 		comment.POST("/publish", controller.PublishComment)
 	}
 
+	game := router.Group("/api/game")
+	{
+		game.GET("/list", controller.GetGameList)
+	}
+
+	event := router.Group("/api/event")
+	{
+		event.GET("/list", controller.GetEventList)
+	}
+
 	return router
 }

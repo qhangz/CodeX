@@ -32,21 +32,21 @@ const userAvatar = localStorage.getItem('userInfo') ? JSON.parse(localStorage.ge
 // publish comment
 const submitWaring = () => {
     ElMessage({
-        message: '请完成信息输入',
+        message: '请输入评论内容',
         type: 'warning',
     })
 }
 const submitSuccess = () => {
     ElMessage({
-        message: '发布成功',
+        message: '发送成功',
         type: 'success',
     })
 }
 const submitFail = () => {
-    ElMessage.error('发布失败')
+    ElMessage.error('发送失败')
 }
 const userNotLogin = () => {
-    ElMessage.error('用户未登录')
+    ElMessage.error('请先登录')
 }
 // reload function(refresh page)
 const reload = () => {
