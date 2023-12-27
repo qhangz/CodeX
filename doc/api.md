@@ -18,10 +18,13 @@ publish discuss: /api/discuss/publish
 get discuss list: /api/discuss/list
 get discuss by id: /api/discuss/info
 get the top title of discuss list(from pre to end): /api/discuss/toplist
+add discuss view number: /api/discuss/info/view
+add discuss like number: /api/discuss/info/like
 
 4. comment
 publish comment: /api/comment/publish
-
+add comment view number: /api/comment/info/view
+add comment like number: /api/comment/info/like
 5. games
 games list: /api/game/list
 

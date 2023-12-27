@@ -124,7 +124,8 @@ const router = createRouter({
           name: 'publish',
           component: () => import('../views/Publish/index.vue'),
           meta: {
-            title: 'CodeX - publish'
+            title: 'CodeX - publish',
+            // isAuth: true
           },
         },
         // discuss item page
@@ -187,10 +188,10 @@ const loginMsg = () => {
 
 // 通过localStorage获取登录状态
 router.beforeEach((to, from, next) => {
-  if (to.meta.title) {
-    document.title = to.meta.title as string ? to.meta.title : '加载中';
-  }
-  next();
+  // if (to.meta.title) {
+  //   document.title = to.meta.title as string ? to.meta.title : '加载中';
+  // }
+  // next();
   if (to.meta.isAuth) { // 判断该路由是否需要登录权限
     if (localStorage.isLogin === 'true') {
       next();
@@ -203,14 +204,16 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (to.matched.length === 0) {
-//     // 路由不存在
-//     next('/404');
-//   } else {
-//     next();
-//   }
-// });
+// if page not found
+router.beforeEach((to, from, next) => {
+  if (to.matched.length === 0) {
+    // 路由不存在
+    next('/404');
+  } else {
+    next();
+  }
+});
+
 
 // 通过useUserStore()获取userStore，进行登录状态判断
 // let userStore: any = null

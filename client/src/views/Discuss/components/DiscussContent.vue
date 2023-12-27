@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { defineProp } from 'vue';
+import { defineProps, onMounted } from 'vue';
 import type { PropType } from 'vue';
+import { addDiscussLikeNumber } from '@/api/discuss';
 
 interface Discuss {
     ID: number;
@@ -35,6 +36,15 @@ const timeFormat = (time: string) => {
 }
 // discussInfo.discusses.CreatedAt = timeFormat(discussInfo.discusses.CreatedAt)
 
+// add like number
+const addLikeNumber = async () => {
+    const res = await addDiscussLikeNumber(discussInfo.discusses.ID)
+    console.log("aa", res.data);
+    if (res.code === '200') {
+        discussInfo.discusses.like_num += 1
+    }
+}
+
 </script>
 <template>
     <div class="discuss-content">
@@ -50,7 +60,7 @@ const timeFormat = (time: string) => {
                 </svg>
                 {{ discusses.view_num }}
             </div>
-            <div class="like-num">
+            <div class="like-num" @click="addLikeNumber">
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-icon"></use>
                 </svg>
@@ -110,10 +120,13 @@ const timeFormat = (time: string) => {
             display: flex;
             gap: 5px;
             cursor: pointer;
-            transition: color 0.2s ease-in-out;
+            transition: all .2s linear;
 
             &:hover {
                 color: var(--primary-100);
+                background-color: var(--bg5);
+                border-radius: 5px;
+                padding: 0px 7px;
             }
         }
 

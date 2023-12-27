@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import type { PropType } from 'vue';
 import { submitComment } from '@/api/comment';
+import { addCommentLikeNumber, addCommentViewNumber } from '@/api/comment';
 
 // get the comment list from index.vue
 interface Comment {
@@ -83,7 +84,26 @@ if (comment.comments.length > 0) {
     hasComment.value = true
 }
 
+// textarea value
 const textarea = ref('')
+
+// add like number
+const addLikeNumber = async (item: any) => {
+    const res = await addCommentLikeNumber(item.ID)
+    if (res.code === '200') {
+        // comment.comments[id].like_num += 1
+        item.like_num += 1
+    }
+}
+
+// add view number
+const addViewNumber = async (item: any) => {
+    const res = await addCommentViewNumber(item.ID)
+    if (res.code === '200') {
+        item.view_num += 1
+    }
+}
+
 </script>
 <template>
     <div class="comment-content">
@@ -115,13 +135,13 @@ const textarea = ref('')
                         </svg>
                         {{ item.view_num }}
                     </div>
-                    <div class="like-num">
+                    <div class="like-num" @click="addLikeNumber(item)">
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-icon"></use>
                         </svg>
                         {{ item.like_num }}
                     </div>
-                    <div class="comment-reply">
+                    <div class="comment-reply" @click="addViewNumber(item)">
                         <span>回复</span>
                     </div>
                 </div>
@@ -260,19 +280,25 @@ const textarea = ref('')
 
                 .like-num {
                     cursor: pointer;
-                    transition: color 0.2s ease-in-out;
+                    transition: all .2s linear;
 
                     &:hover {
                         color: var(--primary-100);
+                        background-color: var(--bg5);
+                        border-radius: 5px;
+                        padding: 0px 7px;
                     }
                 }
 
                 .comment-reply {
                     cursor: pointer;
-                    transition: color 0.2s ease-in-out;
+                    transition: all 0.2s ease-in-out;
 
                     &:hover {
                         color: var(--primary-100);
+                        background-color: var(--bg5);
+                        border-radius: 5px;
+                        padding: 0px 7px;
                     }
                 }
             }

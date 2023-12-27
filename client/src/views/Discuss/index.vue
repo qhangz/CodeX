@@ -5,13 +5,12 @@ import { ref, onMounted } from 'vue'
 import DiscussContent from './components/DiscussContent.vue'
 import CommentContent from './components/CommentContent.vue'
 import UserForm from './components/UserForm.vue'
+import { addDiscussViewNumber } from '@/api/discuss';
 
 const router = useRouter();
 // 获取路由跳转携带的id和author
 const discussId = router.currentRoute.value.params.id;
-// console.log("id", discussId);
 const author = router.currentRoute.value.query.author;
-// console.log("author", author);
 
 // get the details of this discuss by id
 interface Comment {
@@ -38,6 +37,7 @@ interface Discuss {
     like_num: number;
     view_num: number;
 }
+
 let discussInfo = ref<Discuss>({
     ID: 0,
     CreatedAt: "",
@@ -52,15 +52,17 @@ let discussInfo = ref<Discuss>({
     view_num: 0,
 })
 let commentInfo = ref<Comment[]>([])
+
 const getDiscussInfo = async () => {
-    // console.log("get discuss info:");
+    // add view_num by the article id
+    const addRes = await addDiscussViewNumber(discussId)
+
+    // get the discussinfo
     const res = await getDiscussDetailById(discussId)
-    // console.log(res.data);
     commentInfo.value = res.data.Comment
     for (let i = 0; i < commentInfo.value.length; i++) {
         commentInfo.value[i].CreatedAt = commentInfo.value[i].CreatedAt.slice(0, 10)
     }
-    // console.log(commentInfo.value);
     discussInfo.value = {
         ID: res.data.ID,
         CreatedAt: res.data.CreatedAt,
@@ -78,9 +80,8 @@ const getDiscussInfo = async () => {
     discussInfo.value.CreatedAt = discussInfo.value.CreatedAt.slice(0, 10)
     // 给content添加换行符
     // discussInfo.value.content = discussInfo.value.content.replace(/\n/g, "<br />");
-
-    // console.log(discussInfo.value);
 }
+
 
 onMounted(() => {
     getDiscussInfo()

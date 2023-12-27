@@ -62,9 +62,9 @@ const communicate = () => {
                 关注
             </div>
             <div class="communicate" @click="communicate">
-                <RouterLink to="/404">
+                <!-- <RouterLink to="/404"> -->
                     私信
-                </RouterLink>
+                <!-- </RouterLink> -->
             </div>
         </div>
     </div>

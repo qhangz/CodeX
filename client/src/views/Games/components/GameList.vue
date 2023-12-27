@@ -11,10 +11,10 @@ const loginWaring = () => {
     })
 }
 
-const innerClick = (item) => {
-    if (item.route!==''){
+const innerClick = (item: any) => {
+    if (item.route !== '') {
         router.push(item.route)
-    }else{
+    } else {
         loginWaring()
     }
 }

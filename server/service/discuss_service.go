@@ -49,3 +49,13 @@ func GetDiscussTop(pre int, end int) ([]model.TopDiscuss, error) {
 	}
 	return topDiscussList, nil
 }
+
+// add discuss view number
+func AddDiscussView(discussID uint) error {
+	return dao.AddDiscussView(discussID)
+}
+
+// add discuss like number
+func AddDiscussLike(discussID uint) error {
+	return dao.AddDiscussLike(discussID)
+}

@@ -32,7 +32,7 @@ export const getDiscussListByCategoryAndPage = (category: string, page: number) 
 // 根据query参数id获取讨论详情
 export const getDiscussDetailById = (id: any) => {
     return httpInstance({
-        url: `/api/discuss/info?discussID=${id}`,
+        url: `/api/discuss/info?id=${id}`,
         method: 'get',
     })
 }
@@ -42,5 +42,21 @@ export const getDiscussTop = (pre: number, end: number) => {
     return httpInstance({
         url: `/api/discuss/toplist?pre=${pre}&end=${end}`,
         method: 'get',
+    })
+}
+
+// add discuss view number by discuss id
+export const addDiscussViewNumber = (id: any) => {
+    return httpInstance({
+        url: `/api/discuss/info/view?id=${id}`,
+        method: 'put',
+    })
+}
+
+// add discuss like number by discuss id
+export const addDiscussLikeNumber = (id: any) => {
+    return httpInstance({
+        url: `/api/discuss/info/like?id=${id}`,
+        method: 'put',
     })
 }

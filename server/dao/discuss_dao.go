@@ -48,3 +48,13 @@ func GetDiscussTop(pre int, end int) ([]model.TopDiscuss, error) {
 	}
 	return topDiscussList, nil
 }
+
+// add discuss view number
+func AddDiscussView(discussID uint) error {
+	return db.DB.Model(&model.Discuss{}).Where("id = ?", discussID).Update("view_number", db.DB.Raw("view_number + ?", 1)).Error
+}
+
+// add discuss like number
+func AddDiscussLike(discussID uint) error {
+	return db.DB.Model(&model.Discuss{}).Where("id = ?", discussID).Update("like_number", db.DB.Raw("like_number + ?", 1)).Error
+}

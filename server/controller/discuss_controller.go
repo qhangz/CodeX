@@ -11,11 +11,11 @@ import (
 
 // @Title			PublishDiscuss
 // @Description		publish discuss
-// @Param			author  	formData	string		true	"作者名"
-// @Param			title   	formData	string		true	"标题"
-// @Param			summary		formData	string		true	"摘要"
-// @Param			content		formData	string		true	"内容"
-// @Param			category	formData	string		true	"标签"
+// @FormData		author  	formData	string		true	"作者名"
+// @FormData		title   	formData	string		true	"标题"
+// @FormData		summary		formData	string		true	"摘要"
+// @FormData		content		formData	string		true	"内容"
+// @FormData		category	formData	string		true	"标签"
 // @Success			200			object		controllers.Response	"publish success"
 // @Failure			401			object		controllers.Response	"各种错误"
 // @Failure 		500 object controllers.Response "服务器内部错误"
@@ -47,7 +47,7 @@ func PublishDiscuss(c *gin.Context) {
 
 // @Title			GetDiscussInfo
 // @Description		get discuss info by discuss id from request
-// @Param			discussID  	query    	int		true	"discuss ID"
+// @Query			discussID  	query    	string		true 	    "id"
 // @Success			200			object		controllers.Response	"success"
 // @Failure			401			object		controllers.Response	"各种错误"
 // @Failure 		500 object controllers.Response "服务器内部错误"
@@ -55,14 +55,12 @@ func PublishDiscuss(c *gin.Context) {
 // @Router			/api/discuss/info [get]
 func GetDiscussInfo(c *gin.Context) {
 	// 将discussID转换为无符号整数类型
-	discussID, strconEerr := strconv.ParseUint(c.Query("discussID"), 10, 64)
+	discussID, strconEerr := strconv.ParseUint(c.Query("id"), 10, 64)
 	if strconEerr != nil {
 		// 处理转换错误
 		c.JSON(http.StatusOK, gin.H{
 			"code":      "500",
 			"error":     strconEerr.Error(),
-			"discussid": c.Param("discussID"),
-			"disID":     discussID,
 		})
 		return
 	}
@@ -83,7 +81,7 @@ func GetDiscussInfo(c *gin.Context) {
 
 // @Title			Get discuss list
 // @Description		get discuss list by discuss category from request
-// @Param			category  	quert   	int		true	"discuss category"
+// @Query			category  	query   	string		true	    "discuss category"
 // @Success			200			object		controllers.Response	"success"
 // @Failure			401			object		controllers.Response	"各种错误"
 // @Failure 		500 object controllers.Response "服务器内部错误"
@@ -107,7 +105,7 @@ func GetDiscussList(c *gin.Context) {
 
 // @Title			Get the top topic(title) of discuss list
 // @Description		get discuss list by discuss category from request
-// @Param			category  	quert   	int		true	"form pre to end"
+// @Query			category  	query   	string		true	    "form pre to end"
 // @Success			200			object		controllers.Response	"success"
 // @Failure			401			object		controllers.Response	"各种错误"
 // @Failure 		500 object controllers.Response "服务器内部错误"
@@ -143,5 +141,69 @@ func GetDiscussTop(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code": "200",
 		"data": topDiscussList,
+	})
+}
+
+// @Title			Add discuss view number
+// @Description		add discuss view number by discuss id from request
+// @Query			id  	    query   	string		true	    "id"
+// @Success			200			object		controllers.Response	"success"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			discuss
+// @Router			/api/discuss/info/view [put]
+func AddDiscussView(c *gin.Context) {
+	idStr := c.Query("id")
+	id, idErr := strconv.Atoi(idStr)
+	if idErr != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":  "400",
+			"error": idErr.Error(),
+		})
+		return
+	}
+	err := service.AddDiscussView(uint(id))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":  "400",
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"msg":  "success",
+	})
+}
+
+// @Title			Add discuss like number
+// @Description		add discuss like number by discuss id from request
+// @Query			id  	    query   	string		true	    "id"
+// @Success			200			object		controllers.Response	"success"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			discuss
+// @Router			/api/discuss/info/like [put]
+func AddDiscussLike(c *gin.Context) {
+	idStr := c.Query("id")
+	id, idErr := strconv.Atoi(idStr)
+	if idErr != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":  "400",
+			"error": idErr.Error(),
+		})
+		return
+	}
+	err := service.AddDiscussLike(uint(id))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":  "400",
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"msg":  "success",
 	})
 }

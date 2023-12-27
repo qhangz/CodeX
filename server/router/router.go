@@ -44,11 +44,15 @@ func InitRouter() *gin.Engine {
 		discuss.GET("/info", controller.GetDiscussInfo)
 		discuss.GET("/list", controller.GetDiscussList)
 		discuss.GET("/toplist", controller.GetDiscussTop)
+		discuss.PUT("/info/view", controller.AddDiscussView)
+		discuss.PUT("/info/like", controller.AddDiscussLike)
 	}
 
 	comment := router.Group("/api/comment")
 	{
 		comment.POST("/publish", controller.PublishComment)
+		comment.PUT("/info/view", controller.AddCommentView)
+		comment.PUT("/info/like", controller.AddCommentLike)
 	}
 
 	game := router.Group("/api/game")
