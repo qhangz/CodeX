@@ -60,3 +60,11 @@ export const addDiscussLikeNumber = (id: any) => {
         method: 'put',
     })
 }
+
+// get mine discuss list
+export const getMineDiscussList = (username: string) => {
+    return httpInstance({
+        url: `/api/discuss/minelist?username=${username}`,
+        method: 'get',
+    })
+}

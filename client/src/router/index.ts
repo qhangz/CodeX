@@ -101,6 +101,42 @@ const router = createRouter({
           },
         },
         {
+          // user setting pages
+          path: '/user/setting',
+          name: 'userprofile',
+          component: () => import('../views/Setting/index.vue'),
+          meta: {
+            title: 'CodeX - setting',
+            isAuth: true
+          },
+          children: [
+            {
+              path: 'profile',
+              name: 'profile',
+              component: () => import('../views/Setting/Profile.vue'),
+              meta: {
+                title: 'CodeX - profile'
+              },
+            },
+            {
+              path: 'account',
+              name: 'account',
+              component: () => import('../views/Setting/Account.vue'),
+              meta: {
+                title: 'CodeX - Account'
+              },
+            },
+            {
+              path: 'common',
+              name: 'common',
+              component: () => import('../views/Setting/Common.vue'),
+              meta: {
+                title: 'CodeX - Common'
+              },
+            },
+          ]
+        },
+        {
           // codexplore page
           path: '/codexplores',
           name: 'codexplores',

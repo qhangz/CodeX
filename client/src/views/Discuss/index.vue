@@ -110,15 +110,21 @@ onMounted(() => {
 
     .content {
         width: 720px;
-        gap: 300px;
-
-        .comment-content {
-            margin-top: 30px;
-        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
     }
 
     .aside {
         width: 300px;
+    }
+}
+
+@media(max-width:1080px) {
+    .aside {
+        display: none;
     }
 }
 </style>
