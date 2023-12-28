@@ -59,3 +59,23 @@ func AddDiscussView(discussID uint) error {
 func AddDiscussLike(discussID uint) error {
 	return dao.AddDiscussLike(discussID)
 }
+
+// Convert the time format of CreatedAt to 2021-01-01 00:00:00
+func ConvertCreatedAtMine(mineDiscussList []model.MineDiscuss) []model.MineDiscuss {
+	for i := range mineDiscussList {
+		mineDiscussList[i].CreatedAt = mineDiscussList[i].CreatedAt[:10] + " " + mineDiscussList[i].CreatedAt[11:19]
+	}
+	return mineDiscussList
+}
+// get mine discuss list by username
+func GetMineDiscuss(username string) ([]model.MineDiscuss, error) {
+	mineDiscussList, err := dao.GetMineDiscuss(username)
+	if err != nil {
+		return nil, err
+	}
+
+	// convert time format
+	mineDiscussList = ConvertCreatedAtMine(mineDiscussList)
+
+	return mineDiscussList, nil
+}

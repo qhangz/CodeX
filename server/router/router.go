@@ -46,6 +46,7 @@ func InitRouter() *gin.Engine {
 		discuss.GET("/toplist", controller.GetDiscussTop)
 		discuss.PUT("/info/view", controller.AddDiscussView)
 		discuss.PUT("/info/like", controller.AddDiscussLike)
+		discuss.GET("/minelist",controller.GetMineDiscuss)
 	}
 
 	comment := router.Group("/api/comment")

@@ -58,3 +58,16 @@ func AddDiscussView(discussID uint) error {
 func AddDiscussLike(discussID uint) error {
 	return db.DB.Model(&model.Discuss{}).Where("id = ?", discussID).Update("like_number", db.DB.Raw("like_number + ?", 1)).Error
 }
+
+// get mine discuss list by username
+func GetMineDiscuss(username string) ([]model.MineDiscuss, error) {
+	var mineDiscussList []model.MineDiscuss
+	err := db.DB.Model(&model.Discuss{}).
+		Select("id", "title", "summary", "author", "category", "like_number", "view_number", "created_at").
+		Where("author = ?", username).Order("created_at desc").
+		Scan(&mineDiscussList)
+	if err.Error != nil {
+		return nil, err.Error
+	}
+	return mineDiscussList, nil
+}

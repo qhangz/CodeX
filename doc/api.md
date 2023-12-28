@@ -20,6 +20,7 @@ get discuss by id: /api/discuss/info
 get the top title of discuss list(from pre to end): /api/discuss/toplist
 add discuss view number: /api/discuss/info/view
 add discuss like number: /api/discuss/info/like
+get discuss list by username: /api/discuss/minelist
 
 4. comment
 publish comment: /api/comment/publish
@@ -219,6 +220,32 @@ success
         {
             "id": 4,
             "title": "作业写完了吗"
+        }
+    ]
+}
+// get mine discuss
+{
+    "code": "200",
+    "data": [
+        {
+            "id": 22,
+            "author": "HANG",
+            "title": "d3",
+            "summary": "解决疑难杂症",
+            "category": "frontend",
+            "like_num": 0,
+            "view_num": 9,
+            "created_at": "2023-12-23 20:44:06"
+        },
+        {
+            "id": 1,
+            "author": "HANG",
+            "title": "frontend explore",
+            "summary": "codex explore",
+            "category": "frontend",
+            "like_num": 18,
+            "view_num": 78,
+            "created_at": "2023-12-17 16:07:16"
         }
     ]
 }

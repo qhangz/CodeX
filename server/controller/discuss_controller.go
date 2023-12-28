@@ -207,3 +207,27 @@ func AddDiscussLike(c *gin.Context) {
 		"msg":  "success",
 	})
 }
+
+// @Title			Get mine discuss list
+// @Description		get discuss list by username from request
+// @Query			username  	query   	string		true	    "username"
+// @Success			200			object		controllers.Response	"success"
+// @Failure			401			object		controllers.Response	"各种错误"
+// @Failure 		500 object controllers.Response "服务器内部错误"
+// @Tags			discuss
+// @Router			/api/discuss/minelist [get]
+func GetMineDiscuss(c *gin.Context) {
+	username := c.Query("username")
+	discussList, err := service.GetMineDiscuss(username)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":  "400",
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": "200",
+		"data": discussList,
+	})
+}

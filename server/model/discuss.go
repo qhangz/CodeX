@@ -29,6 +29,18 @@ type DiscussList struct {
 	CreatedAt   string `gorm:"type:varchar(20);not null" json:"created_at"`
 }
 
+// return discuss list by username
+type MineDiscuss struct {
+	ID          uint   `gorm:"primary_key" json:"id"`
+	Author      string `gorm:"type:varchar(20);not null" json:"author"`
+	Title       string `gorm:"type:varchar(20);not null" json:"title"`
+	Summary     string `gorm:"type:varchar(20);not null" json:"summary"`
+	Category    string `gorm:"type:varchar(20);not null" json:"category"`
+	Like_Number int64  `gorm:"type:int" json:"like_num"`
+	View_Number int64  `gorm:"type:int" json:"view_num"`
+	CreatedAt   string `gorm:"type:varchar(20);not null" json:"created_at"`
+}
+
 // return the top discuss list
 type TopDiscuss struct {
 	ID uint `gorm:"primary_key" json:"id"`
