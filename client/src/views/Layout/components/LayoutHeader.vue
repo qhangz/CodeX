@@ -100,13 +100,13 @@ onMounted(() => {
                         <RouterLink to="/events" :class="{ 'active': $route.path === '/events' }">活动</RouterLink>
                     </li>
                     <li>
-                        <RouterLink to="/chanllenge" :class="{ 'active': $route.path === '/chanllenge' }">竞赛</RouterLink>
-                    </li>
-                    <li>
-                        <RouterLink to="/course" :class="{ 'active': $route.path === '/course' }">课程</RouterLink>
-                    </li>
-                    <li>
                         <RouterLink to="/games" :class="{ 'active': $route.path === '/games' }">游戏</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/codexplores" :class="{ 'active': $route.path === '/codexplores' }">用户</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/app" :class="{ 'active': $route.path === '/app' }">APP</RouterLink>
                     </li>
                     <li>
                         <RouterLink to="/about" target="_blank" :class="{ 'active': $route.path === '/about' }">关于

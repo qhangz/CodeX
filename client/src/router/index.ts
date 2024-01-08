@@ -224,10 +224,10 @@ const loginMsg = () => {
 
 // 通过localStorage获取登录状态
 router.beforeEach((to, from, next) => {
-  // if (to.meta.title) {
-  //   document.title = to.meta.title as string ? to.meta.title : '加载中';
-  // }
-  // next();
+  if (to.meta.title) {
+    document.title = to.meta.title as string ? to.meta.title : '加载中';
+  }
+  next();
   if (to.meta.isAuth) { // 判断该路由是否需要登录权限
     if (localStorage.isLogin === 'true') {
       next();

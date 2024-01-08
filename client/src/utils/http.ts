@@ -2,7 +2,8 @@ import axios from 'axios'
 
 // 创建axios实例
 const httpInstance = axios.create({
-    baseURL: 'http://localhost:8080',
+    // baseURL: 'http://localhost:8080',
+    baseURL: 'https://api.zqhang.top',
     timeout: 5000
 })
 

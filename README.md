@@ -1,2 +1,2 @@
-# my-community
+# codex-community
 codex community
