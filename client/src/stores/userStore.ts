@@ -46,28 +46,33 @@ export const useUserStore = defineStore('user', () => {
 
     // 登录
     const login = async ({ username, password }: { username: string, password: any }) => {
-        if (userState.isLogin === true) {
-            // already login
-            alreadyLoginMsg()   //提示已经登录
-        } else {
-            const res = await userLogin(username, password)
-            if (res.code == 200) {
-                loginSuccessMsg()   //提示登录成功
-                userState.token = res.data.token
-                userState.isLogin = true
-                userInfo.value = res.data.userInfo
-                // console.log("1", userInfo.value);
-                // localstorage存储登录状态
-                localStorage.setItem('isLogin', 'true')
-                localStorage.setItem('token', res.data.token)
-                localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
-                // 登录成功后，跳转到上一个页面
-                router.back()
-            } else if (res.code == 400) {
-                loginWarningMsg()   //提示登录有误
+        try {
+            if (userState.isLogin === true) {
+                // already login
+                alreadyLoginMsg()   //提示已经登录
             } else {
-                errorMsg()  //提示登录有误
+                const res = await userLogin(username, password)
+                if (res.code == 200) {
+                    loginSuccessMsg()   //提示登录成功
+                    userState.token = res.data.token
+                    userState.isLogin = true
+                    userInfo.value = res.data.userInfo
+                    // console.log("1", userInfo.value);
+                    // localstorage存储登录状态
+                    localStorage.setItem('isLogin', 'true')
+                    localStorage.setItem('token', res.data.token)
+                    localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
+                    // 登录成功后，跳转到上一个页面
+                    router.back()
+                } else if (res.code == 400) {
+                    loginWarningMsg()   //提示登录有误
+                } else {
+                    // errorMsg()  //提示登录有误
+                }
             }
+        } catch (error) {
+            console.log(error);
+            loginWarningMsg()
         }
     }
 

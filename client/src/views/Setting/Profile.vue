@@ -155,10 +155,10 @@ onMounted(() => {
                     <!-- <input type="text" placeholder="原用户名" v-model="form.username"> -->
                     <input type="password" placeholder="输入密码" v-model="form.password">
                 </div>
-                <div class="form update-username">
+                <!-- <div class="form update-username">
                     <input type="text" placeholder="新的用户名" v-model="form.newusername">
                     <button class="changebtn" @click="changeUsername">修改</button>
-                </div>
+                </div> -->
                 <div class="form update-password">
                     <input type="password" placeholder="新密码" v-model="form.newpassword">
                     <button class="changebtn" @click="changePassword">修改</button>

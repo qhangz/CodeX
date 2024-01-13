@@ -14,10 +14,18 @@ const route = useRouter()
 const reload = () => {
     window.location.reload()
 }
+const goToHome = () => {
+    route.push('/')
+    // 在路由变化后等待2秒再执行 window.location.reload()
+    setTimeout(() => {
+        window.location.reload();
+    }, 500);
+}
 const logout = () => {
     useUserStore().logout()
-    console.log("logout");
-    reload()
+    goToHome()
+    // console.log("logout");
+    // reload()
 }
 
 // route push to user profile

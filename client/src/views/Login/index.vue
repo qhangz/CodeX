@@ -2,7 +2,8 @@
 import { reactive } from 'vue'
 import { userRegister } from '@/api/user'
 import { useUserStore } from '@/stores/userStore';
-
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
 // import axios from 'axios';
 const state = reactive({
@@ -25,9 +26,26 @@ const loginWaring = () => {
         type: 'warning',
     })
 }
+const loginFail = () => {
+    ElMessage.error('登录失败')
+}
+const goBack = () => {
+    router.go(-1)
+}
 const login = () => {
     if (form.username != '' && form.password != '') {
         useUserStore().login({ username: form.username, password: form.password })
+        // let isUserLogin = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')!).isLogin : false
+        // if (isUserLogin == true) {
+        //     goBack()
+        // } else if (isUserLogin == false) {
+        //     loginFail()
+        // }
+        // if(isUserLogin==false){
+        //     loginFail()
+        // }else{
+        //     goBack()
+        // }
     } else {
         loginWaring()
     }
